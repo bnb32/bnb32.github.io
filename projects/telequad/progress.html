@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+
+    <title>Quadcopter Telepresence Project Progress</title>
+  
+    <style>
+
+    </style>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ["\\(","\\)"]],processEscapes: true}
+      });
+    </script>
+
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+    </script>
+
+  </head>
+
+  <body bgcolor="#ffffff" link="#0000ff" text="#000000" vlink="#0000ff">
+    <center style="font-family: Helvetica,Arial,sans-serif;">
+      <table border="0" cellpadding="2" cellspacing="10" width="90%">
+        <tbody>
+	  <tr>
+	    <td><medium></medium>
+
+	    <a href="docs/telequad.pdf">Proposal</a>
+		    
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Week of Nov. 8<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+	    
+	    Here efforts were focused on researching and evaluating existing useful software options. Gazebo, ROS, Oculus SDK2, and ZED firmware were all installed on the ground computer. We are currently still waiting for the Jetson TK1 to arrive but the ground computer will be used for initial development before porting certain software elements. Gazebo required manual configuration for successful compilation, and Oculus compatibility was incorporated during this process. ZED firmware required manual camera calibration for successful image capture. ROS is a framework with many available packages and much time was devoted to exploring availability of packages for integrating ZED and the Oculus. Unfortunately no ROS packages exist for interfacing with the Oculus SDK2 so this will have to be developed. A few options for interfacing with ZED under ROS are available but only the "ros_zed_cuda_driver" from Walter Lucetti was found to work well with OpenCV and utilize GPU acceleration.   
+	    </medium></p>
+	    
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Week of Nov. 15<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+	    
+	    Focus during this week was on design and development of Oculus SDK2/ROS compatibility. Much thought on specific structure of software under ROS was performed in order to facilitate future portability to the quadcopter computer and preserving seamless communication among separate ROS nodes. The plan is to run an ROS master node on the ground and for nodes running on the quadcopter to communicate with the ground through this master. This ROS process on the ground will be responsible for exposing head-tracking data and sending image requests to the vehicle based on this data stream. Multiple ROS nodes require a master to communicate with eachother, so if multiple processes, within separate nodes, are to run on the quadcopter this will require a master onboard as well. Linking these separate masters will likely be done through a p2p communication link. </p><p>
+
+	    In addition to these structural considerations, the Linux Oculus SDK2 version 0.5.0.1 was used to write an ROS node to expose head orientation and position data to the onground ROS master node. Previous versions of the SDK2 performed image distortion, required to compensate for lens distortion when viewing images through the Oculus headset, using shaders. However, newer versions perform this distortion in the compositing layer of the rendering pipeline. Thus, we need to send textures to the Oculus in order to take advantage of the Oculus rendering pipeline. Next steps will be to write an ROS node which subscribes to images published by the ZED node and binds these images to OpenGL textures, which in turn will be used by the Oculus SDK distortion routine. The plan to incorporate this functionality into the ROS node currently handling head motion data. 
+
+	    </medium></p>
+          
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Week of Nov. 22<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+	    
+	    This week overlapped with Thanksgiving break and thus less got done on the research side. However, a fair amount of time was dedicated to developing this website since this was easier to do remotely. Before leaving for home some initial work was done on writing a program to capture zed images and bind these to textures passed into the Oculus compositing routine. This involved sorting out GPU handling of ZED images within the oculus framework, which relies heavily on the GPU for its own rendering routine. Cuda/OpenGL interopability components of the Cuda API, along with the ZED and Oculus SDKs, were used to build this program.  
+	    
+	    </medium></p>
+
+ 	    <p style="font-weight: bold;" align="left">
+	      <medium>Week of Nov. 29<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+	    
+	    This week was spent finishing up the aforementioned program, providing lens distortion and chromatic aberration corrected stereo camera rending. The majority of this program used GPU based processing - performing ZED image capture, binding images to OpenGL textures, fragment shading, and Oculus specific rendering all on the GPU. With this program up and running it was realized that USB 3.0 framerates were not being acheived by the ZED. Framerates using USB 2.0 were only 12 Hz opposed to the 100 Hz maximum reported by ZED manufacturing. This began the process of extensive hardware/software debugging of my workstation to enable the USB 3.0 framerates.
+	    
+	    </medium></p>
+	  
+ 	    <p style="font-weight: bold;" align="left">
+	      <medium>Week of Dec. 6<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+	    
+	    This week was primarily spent trying to sort out USB 3.0 problems. Higher framerates could be achieved using Windows OS but future plans for ROS incorporation required using Linux. A number of different Linux kernels were tried, as Windows working suggested a driver issue. After many unsuccesful attempts to find a working kernel, BIOS options were toggled in an attempt to workaround possible low power supply to the USB 3.0 ports. It was suspected that Windows could be overriding the BIOS power management settings. This was to no avail and the camera was tried on my home computer. On this system the camera worked flawlessly. This system was then cloned on a separate harddrive and installed in my workstation, again without success. Trying the camera on a few computers with the same USB 3.0 host controller as my home system resulted in correct camera functioning in each case. Thus this problem was narrowed down to incompatibility between the linux kernel and workstation USB 3.0 host controllers (ASMedia2012A on Intel C602 chipset vs. Intel host controllers on Intel C200 chipset). Finally workstations were temporarilly switched to continue development on a single system.  
+
+	    </medium></p>
+ 	    
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Week of Dec. 13<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+	    
+	    With a USB 3.0/ZED compatible machine development continued - head orientation based view of ZED images was incorporated into the previously mentioned program simply through converting Oculus orientation quaternion to rotation matrix and performing OpenGL rotation. Image textures were overlayed on quads initially but projection to a spherical patch was also added to provide a more immersive view when changing head orientation. With a fairly complete single rendering program built, decomposing into separate ROS nodes was started. The image capturing routine was separated and, rather than passing ZED pixel data directly to Cuda arrays bound to OpenGL textures, pixel data was copied from GPU memory and "published" to the ROS master node. The texture binding and Oculus rendering code was separated into a "subscriber" node, running a callback function which copied the published pixel data into GPU memory and proceeded with the previously developed rendering routine. In both the publisher and subscriber, ROS processes were setup to run on a separate thread than the rendering/capturing routines.    
+	    
+	    </medium></p>
+	    
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Week of Dec. 20<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+	    
+	    With the initial rendering program decomposed into a "publisher" and "subscriber" node the publisher could then be transferred to the Jetson board where it would run locally with the ZED plugged in to the native USB 3.0 port. ROS launch scripts were written to setup the network environment for the Jetson and the workstation to enable remote communication. The ROS master node was run on the workstation and with the Jetson board connected through ethernet the ZED image publisher node would be told to connect to the master IP address and subsequently launched. Upon launch the published "topics" (i.e. right and left pixel data and camera information) show up in the scope of the ROS master node. The ZED images are initially stored in local GPU memory and published after copying to the CPU. Then, upon launch of the subscriber node on the workstation, remotely captured pixel data would be copied back into workstation GPU memory. With both the Jetson and workstation plugged into ethernet and operating on the same network, transmission latency is very low (on the order of 1 ms), and rendering appears as smooth as when all routines were bound in a single program. Thus, this achieves the initial simplified remote viewing system proposed to complete by the end of the 2015 fall semester.<p></p>
+
+	    Next the Jetson ethernet connection will be swapped for a WiFi connection and work will begin on latency compensation. On a separate thread a depth-map publisher will be included in the Jetson publisher node. Also, pixel selection from GPU arrays based on head orientation will be developed. This will need information from the ground about head orientation, and will rely on subscription to published head orientation data. The earlier written oculus driver will run on the workstation and be used to publish this data. OpenGL view rotation will be changed to rely on the subscriber/publisher paradigm, subscribing to data published by the oculus driver and using this to update views.   
+	    
+	    </medium></p>
+
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Weeks of Jan. 24<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+
+	    Upon returning from break my initial thinking was to focus on transitioning from an ethernet link to WiFi to handle air to ground video streaming. A spare USB WiFi module was used on the Jetson board and an ad-hoc access point was setup on the ground computer. The Jetson was setup to connect to this access point and stream video in the same way as previously discussed. The original ethernet link was 1 Gbit per second while the WiFi module used could accomodate around 30 Mbit, which had the expected result of reducing the frame rate by a factor of 30. An obvious conclusion here is that video data would need to be compressed significantly, or sparsely represented and reconstructed on the ground. 
+
+	    </medium></p>
+
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Weeks of Feb. 7<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+
+	    This period was marked by thinking about possible compression ontop of the raw video stream. A few of the built-in ROS compression modules were experimented with but provided only small amounts of latency reduction. 
+
+	    </medium></p>
+
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Weeks of Feb. 21<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+
+	    A plan was devised to approach the environment viewing initially through simulation. The robotics simulation framework Gazebo was selected for this. Compilation from source was required and the source code was patched to work with the Oculus driver. This allowed for viewing the simulated environment through the Oculus and viewing changes based on head tracking.
+
+	    </medium></p>
+
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Weeks of Mar. 6<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+
+	    Gazebo took a bit of time to get used to. Understanding how environments were defined using XML and allowing for future incorporation of user-defined functions (UDFs) was required. 
+	    </medium></p>
+
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Weeks of Mar. 20<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+
+	    After getting used to Gazebo the literature on environment reconstruction was revisited to plan for building the depth camera module into Gazebo as well as incorporating the reconstruction pipeline. The Volumetric 3D Mapping paper by Steinbrucker et al. was selected at the best starting point for reconstruction. 
+
+	    </medium></p>
+
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Weeks of Apr. 3<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+
+	    Work was started on building the depth camera moduleinto Gazebo. The idea here was to place two cameras in the simulation, with a known separation, and use the parallax to determine the depth. This was not as quick as initially predicted and significant time was spent working out issues with handling the cameras within the simulation framework.	    
+
+	    </medium></p>
+
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Weeks of Apr. 17<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+
+	    It was decided that the depth camera module would work better using the KinectFusion module currently being incorporated into the Gazebo framework. Some starter code was found online and built into the existing depth camera module. This made handling the pixel matching process much easier and completed the depth camera module.
+
+	    </medium></p>
+
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Weeks of May 1<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+
+	    Here work was started on generating a signed distance function (SDF) from the depth camera data. A simulation volume is specified and for each voxel a signed number is assigned based on distance from the occupied voxel, determined from the depth map. The number is negative if the voxel is further from the viewing location than the occupied cell and positive otherwise. 
+
+	    </medium></p>
+
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Weeks of May 15<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+
+	    Visible bugs in the SDF routine were worked out and seemingly resulted in a stable calculation. The depth camera module was revisted and adjusted just to use the z-buffer for depth map generation. Previous code for simulating the depth camera was put aside for later use.   
+
+	    </medium></p>
+
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Weeks of May 29<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+
+	    Here work was started on blending multiple depth frames together. Camera tracking was used to determine transformations required to ensure all depth data was given in the same coordinate system. Thinking in terms of more complicated camera paths, ROS camera tracking functionality can be used within Gazebo to handle this process.  
+
+	    </medium></p>
+	    
+	    <p style="font-weight: bold;" align="left">
+	      <medium>Weeks of June 12<br/></medium></p>
+	    <p></p>
+	    <p><medium>
+	    </medium></p>
+
+	  </tr>
+	</tbody>
+      </table>
+    </center>
+  </body>
+</html> 

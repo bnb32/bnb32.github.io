@@ -1,0 +1,229 @@
+body {
+background-color: #00191a;
+z-index: 0;
+margin-top: 15px;
+}
+
+div#wrapper {
+    position: fixed;
+    top: 10px;
+    width: 100%;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    z-index: 1;
+}
+
+ul#navbar {
+    padding: 0;
+    width: auto;
+    list-style: none;
+    margin: 0;
+}
+
+ul#navbar li {
+    display: inline-block;
+    margin-top: 0;
+    border-width: 4px;
+    border-style: solid;
+    border-color: #a8acad;
+}
+
+ul#navbar a:link, a:visited {
+    display: block;
+    width: 200px;
+    font-weight: bold;
+    color: black;
+    background-color: #ebf0f2;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+ul#navbar a:hover, a:active {
+    background-color: red;
+}
+
+img {
+    border: 0;
+}
+
+.obfuscate {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+div#headpane {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    color: #323333;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #ebf0f2;
+    border-width: 4pt;
+    border-style: solid;
+    z-index: 0;
+    border-color: #a8acad;
+    width: 900px;
+    height: 255px;
+}
+
+div#contentpane {
+    text-align:justify;
+    position: relative;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -1%;
+    color: #000000;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 100%;
+    width: auto;
+    width: 900px;
+    background-color: #ebf0f2;
+    border-width: 4pt;
+    border-style: solid;
+    border-color: #a8acad;
+}
+
+div#name {
+    vertical-align: top;
+    background-color: #00191a;
+    text-align: center;
+    z-index: 0;
+    height: 210px;
+    font-size: 125%;
+    font-family: Helvetica, Arial, sans-serif;
+    border-width: 4pt;
+    border-style: solid;
+    border-color: #a8acad;
+    color: white;
+}
+
+div#name a:link, a:visited {
+    color: red;
+}
+
+div#name a:hover {
+    color: #1aff1a;
+    text-decoration: underline;
+
+}
+
+div#mainpic {
+    display: inline-block;
+    vertical-align: center;
+    background-color: #ebf0f2;
+    border-width: 4pt;
+    border-style: solid;
+    border-color: #a8acad;
+    margin-left: 30px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 200px;
+    height: 210px;
+}
+
+span#bb {
+    font-size: 175%;
+}
+
+.left {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 605px;
+}
+
+div#content {
+    position: relative;
+    top: 20px;
+    margin-left:40px;
+    margin-right:40px;
+    width: auto;
+    font-family: Helvetica, Arial, sans-serif;
+/*border-top: 2pt #000000 solid;
+z-index: 0;*/
+}
+
+div#footer {
+    position: relative;
+    font-family: Helvetica, Arial, sans-serif;
+    top: 20px;
+    font-size:80%;
+}
+
+#contentpane p {
+    height: auto;
+    margin-left: 10px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+h1{
+    color: black;
+    position: absolute;
+    padding-top: 50px;
+    margin-top: -50px;
+    font-family: Helvetica, Arial, sans-serif;
+    visibility: visible;
+}
+
+.head{
+    height: 5px;
+    color: #000000;
+    background-color: #000000;
+    margin-bottom: 20px;
+}
+
+#footer {
+    margin: 30px 0px;
+    text-align: center;
+    position: relative;
+    font-family: 'Titillium Web', Arial, sans-serif;
+    top: 0px;
+    font-size: 95%;
+    float: left;
+    width: 100%;
+    color: white;
+}
+
+#footer .side, #footer .middle {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#footer .side {
+    margin: 0px;
+    width: 100px;
+}
+
+#footer .middle {
+    margin: 0px;
+    width: 60%;
+    padding: 10px;
+    text-align: justify;
+}
+
+a:link {
+    color: red;
+    text-decoration: none;
+}
+
+a:visited {
+    color: red;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1aff1a;
+    text-decoration: underline;
+}
+
+hr {
+    border-color: #00248E;
+}
