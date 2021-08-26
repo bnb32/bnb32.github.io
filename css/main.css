@@ -4,6 +4,11 @@ z-index: 0;
 margin-top: 15px;
 }
 
+#pic  {
+float: left;
+ margin: 0 15px 0 0;
+}
+
 div#wrapper {
     position: fixed;
     top: 10px;
@@ -119,15 +124,25 @@ div#mainpic {
     border-width: 4pt;
     border-style: solid;
     border-color: #a8acad;
-    margin-left: 30px;
+    margin-left: 40px;
     margin-top: 2%;
     margin-bottom: 2%;
-    width: 200px;
+    width: 180px;
     height: 210px;
 }
 
 span#bb {
     font-size: 175%;
+}
+
+.leftResearch {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 775px;
 }
 
 .left {
