@@ -225,13 +225,13 @@ h1{
 }
 
 a:link {
-    color: red;
-    text-decoration: none;
+    color: black;
+    text-decoration: underline;
 }
 
 a:visited {
-    color: red;
-    text-decoration: none;
+    color: black;
+    text-decoration: underline;
 }
 
 a:hover {
