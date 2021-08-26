@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+
+    <title> Twitch Chat Bot </title>
+  
+    <style>
+    content {background-color: white;}
+    .center {display: block;
+        margin-left:auto;
+        margin-right:auto;
+        width:50%}
+    .left-center {float: left;
+        display:block;
+        margin-left:25%;
+        margin-right:auto;
+        width:20%}
+    .right-center {float:right;
+        display:block;
+        margin-right:25%;
+        margin-left:auto;
+        width:20%}
+    .left {float: left;
+        margin-right:15px;
+        margin-left:15px;
+        display:block;}
+    .right {float: right;
+        margin-right:15px;
+        margin-left:15px;
+        display:block;}
+
+
+
+    </style>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ["\\(","\\)"]],processEscapes: true}
+      });
+    </script>
+
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+    </script>
+
+  </head>
+
+  <body>
+  <!--bgcolor="#ffffff" link="#0000ff" text="#000000" vlink="#0000ff">-->
+   
+  <div id="content">    
+
+      <center style="font-family: Helvetica,Arial,sans-serif;">
+          <b>Twitch Chat Bot for Botezlive Channel</b></br></br>
+      </center>
+      This bot was developed to automatically moderate chat for the Botezlive twitch channel. It is currently in use on the Botezlive channel and deletes messages based on the trained classifier.
+      
+      <center style="font-family: Helvetica,Arial,sans-serif;">
+      </br><b>Data Processing</b></br></br> 
+      </center>
+      
+      Chat data was logged using the Chatty program. Messages were labeled as "1" if they had been deleted or timed out by a human moderator and "0" otherwise. The streamers for the channel prefer to keep chat not sexual and focused on chess so moderation is fairly strict with regard to comments on appearance.  
+      <img src="pics/wordcloud_all.png" alt="" width="450" height="200" id="pic" class="center"/>
+      
+      <center style="font-family: Helvetica,Arial,sans-serif;">
+      </br><b>Modeling</b></br></br> 
+      </center>
+
+      Vectorization of messages was done with TF-IDF and classification was done using a linear SVM. Other classifiers were tried (e.g. Logistic Regression, Decision Trees, Random Forest) but SVM performed the best. This performance was assessed with confusion matrices, precison/recall scores, and brier loss.
+
+      <img src="pics/confusion_test.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/precision_test.png" alt="" width="225" height="225" id="pic" class="left"/>
+      <img src="pics/brier_loss_test.png" alt="" width="225" height="225" id="pic" class="right"/>
+      <img src="pics/auc_test.png" alt="" width="225" height="225" id="pic" class="right"/>
+
+      <center style="font-family: Helvetica,Arial,sans-serif;">
+      </br><b>Clustering</b></br></br> 
+      </center>
+
+      The model is retrained regularly on new chat logs. The deletions made by the classifier are reviewed and kept or reclassified manually. It would be nice to have an unsupervised way of updating the classifier. Clustering was explored in this regard. </br></br>
+
+      Principal component analysis was used on TF-IDF vectorized text and then clustered using KMeans and DBSCAN. An example of KMeans clustering with randomly selected PCA dimensions is shown below.
+
+      <img src="pics/kmeans_clusters.png" alt="" width="225" height="225" id="pic" class="center"/>
+
+      The word cloud for the KMeans clusters is shown below.
+
+      <img src="pics/kmeans_wordclouds.png" alt="" width="450" height="200" id="pic" class="center"/>
+
+      This clustering is reasonable but it misses some key things compared to the original classification. An example of DBSCAN clustering with randomly selected PCA dimensions is shown below.
+
+      <img src="pics/dbscan_clusters.png" alt="" width="225" height="400" id="pic" class="center"/>
+
+      </br>The word clouds for the first 10 dbscan clusters are shown below.</br>
+
+      <img src="pics/dbscan_left_clouds.png" alt="" width="225" height="500" id="pic" class="left-center"/>
+      <img src="pics/dbscan_right_clouds.png" alt="" width="225" height="500" id="pic" class="right-center"/>
+
+
+
+
+
+
+
+  </div>
+
+  </body>
+</html> 
