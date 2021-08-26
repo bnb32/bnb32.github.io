@@ -242,3 +242,10 @@ a:hover {
 hr {
     border-color: #00248E;
 }
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}

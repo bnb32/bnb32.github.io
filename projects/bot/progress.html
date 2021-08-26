@@ -12,23 +12,25 @@
         margin-right:auto;
         width:50%}
     .left-center {float: left;
-        display:block;
         margin-left:25%;
-        margin-right:auto;
-        width:20%}
+        margin-right:auto;}
     .right-center {float:right;
-        display:block;
         margin-right:25%;
-        margin-left:auto;
-        width:20%}
+        margin-left:auto;}
     .left {float: left;
         margin-right:15px;
-        margin-left:15px;
-        display:block;}
+        margin-left:15px;}
     .right {float: right;
         margin-right:15px;
-        margin-left:15px;
-        display:block;}
+        margin-left:15px;}
+    two-figs {display: inline-block;
+        margin-left:25%;
+        margin-right:auto;
+        width:50%;}
+    three-figs {display: inline-block;
+        margin-left:13%;
+        margin-right:auto;
+        width:75%;}
 
 
 
@@ -79,26 +81,42 @@
 
       The model is retrained regularly on new chat logs. The deletions made by the classifier are reviewed and kept or reclassified manually. It would be nice to have an unsupervised way of updating the classifier. Clustering was explored in this regard. </br></br>
 
-      Principal component analysis was used on TF-IDF vectorized text and then clustered using KMeans and DBSCAN. An example of KMeans clustering with randomly selected PCA dimensions is shown below.
+      Principal component analysis was used on TF-IDF vectorized text and then clustered using KMeans and DBSCAN. Correlations for the principal components is shown below.
+      
+      
+      <img src="pics/pca_corrs.png" alt="" width="230" height="275" id="pic" class="center"/>
+      
+      An example of KMeans clustering with randomly selected PCA dimensions is shown below.
 
       <img src="pics/kmeans_clusters.png" alt="" width="225" height="225" id="pic" class="center"/>
 
       The word cloud for the KMeans clusters is shown below.
 
-      <img src="pics/kmeans_wordclouds.png" alt="" width="450" height="200" id="pic" class="center"/>
+      <img src="pics/kmeans_wordclouds.png" alt="" width="550" height="200" id="pic" class="center"/>
 
       This clustering is reasonable but it misses some key things compared to the original classification. An example of DBSCAN clustering with randomly selected PCA dimensions is shown below.
 
       <img src="pics/dbscan_clusters.png" alt="" width="225" height="400" id="pic" class="center"/>
 
       </br>The word clouds for the first 10 dbscan clusters are shown below.</br>
+      
+      <two-figs>
+          <img src="pics/dbscan_left_clouds.png" alt="" width="255" height="550" id="pic"/>
+          <img src="pics/dbscan_right_clouds.png" alt="" width="255" height="550" id="pic"/>
 
-      <img src="pics/dbscan_left_clouds.png" alt="" width="225" height="500" id="pic" class="left-center"/>
-      <img src="pics/dbscan_right_clouds.png" alt="" width="225" height="500" id="pic" class="right-center"/>
+      </two-figs>
+      </br>This clustering also misses the mark and it's unclear how one would automatically group clusters corresponding to the desired binary classification.
 
+      <p>
+      The following shows comparisons between (1) points with original classifications, (2) points with KMeans cluster labels, and (3) points with DBSCAN cluster labels. 
+      </p>
 
+      <three-figs>
+          <img src="pics/labeled_clusters.png" alt="" width="255" height="525" id="pic"/>
+          <img src="pics/kmeans_many_clusters.png" alt="" width="255" height="525" id="pic"/>
+          <img src="pics/dbscan_many_clusters.png" alt="" width="255" height="525" id="pic"/>
 
-
+      </three-figs>
 
 
 
