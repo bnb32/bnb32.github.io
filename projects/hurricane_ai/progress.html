@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+
+    <title> Hurricane AI </title>
+  
+    <style>
+    content {background-color: white;}
+    .center {display: block;
+        margin-left:auto;
+        margin-right:auto;
+        width:50%}
+    .left-center {float: left;
+        margin-left:25%;
+        margin-right:auto;}
+    .right-center {float:right;
+        margin-right:25%;
+        margin-left:auto;}
+    .left {float: left;
+        margin-right:15px;
+        margin-left:15px;}
+    .right {float: right;
+        margin-right:15px;
+        margin-left:15px;}
+    one-fig {display: inline-block;
+        margin-left:30%;
+        margin-right:auto;
+        width:50%;}
+    two-figs {display: inline-block;
+        margin-left:25%;
+        margin-right:auto;
+        width:50%;}
+    three-figs {display: inline-block;
+        margin-left:13%;
+        margin-right:auto;
+        width:75%;}
+    four-figs {display: inline-block;
+        margin-left:auto;
+        margin-right:auto;
+        width:100%;}
+
+
+    </style>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ["\\(","\\)"]],processEscapes: true}
+      });
+    </script>
+
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+    </script>
+
+  </head>
+
+  <body>
+  <!--bgcolor="#ffffff" link="#0000ff" text="#000000" vlink="#0000ff">-->
+   
+  <div id="content">    
+
+      <center style="font-family: Helvetica,Arial,sans-serif; font-size: 30px;">
+      <b>Hurricane AI</b></br></br>
+      </center>
+      Here we train a neural network on satellite images of hurricanes at different stages in their lifespans. We first collect images using hurricane dates from IBTRACS. 
+
+      <center style="font-family: Helvetica,Arial,sans-serif;">
+      </br><b>Data Collection</b></br></br> 
+      </center>
+      
+      </br>We used the IBTRACS database to get the dates of hurricanes in the North Atlanic after 2000.       
+      <one-fig> 
+      <img src="pics/storms.png" alt="" width="400" height="225" id="pic"/>
+      </one-fig>
+
+      </br></br>These storm tracks were extrapolated backwards to get dates for "pre-storm" and "clear" conditions.  
+      
+      <one-fig>
+      <img src="pics/storms_extrap.png" alt="" width="400" height="225" id="pic"/>
+      </one-fig>
+
+      </br></br>The labels in the plots are "CL", "PS", "DB", "TD", "TS", and "HU" for "clear", "pre-storm", "disturbance", "tropical depression", "tropical storm", and "hurricane." Satellite images during these phases will be labeled accordingly and used to train the neural network to recognize these conditions. 
+
+  </div>
+
+  </body>
+</html> 

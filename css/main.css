@@ -243,9 +243,29 @@ hr {
     border-color: #00248E;
 }
 
+
+progress {background-color: white;}
+
 .center {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
 }
+
+one-fig {display: inline-block;
+    margin-left:50%;
+    margin-right:auto;
+    width:50%;}
+two-figs {display: inline-block;
+    margin-left:25%;
+    margin-right:auto;
+    width:50%;}
+three-figs {display: inline-block;
+    margin-left:13%;
+    margin-right:auto;
+    width:75%;}
+four-figs {display: inline-block;
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;}
