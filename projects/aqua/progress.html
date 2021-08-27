@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+
+    <title> Idealized Planet Simulations </title>
+  
+    <style>
+    content {background-color: white;}
+    .center {display: block;
+        margin-left:auto;
+        margin-right:auto;
+        width:50%}
+    .left-center {float: left;
+        margin-left:25%;
+        margin-right:auto;}
+    .right-center {float:right;
+        margin-right:25%;
+        margin-left:auto;}
+    .left {float: left;
+        margin-right:15px;
+        margin-left:15px;}
+    .right {float: right;
+        margin-right:15px;
+        margin-left:15px;}
+    two-figs {display: inline-block;
+        margin-left:25%;
+        margin-right:auto;
+        width:50%;}
+    three-figs {display: inline-block;
+        margin-left:13%;
+        margin-right:auto;
+        width:75%;}
+    four-figs {display: inline-block;
+        margin-left:auto;
+        margin-right:auto;
+        width:100%;}
+
+
+    </style>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ["\\(","\\)"]],processEscapes: true}
+      });
+    </script>
+
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+    </script>
+
+  </head>
+
+  <body>
+  <!--bgcolor="#ffffff" link="#0000ff" text="#000000" vlink="#0000ff">-->
+   
+  <div id="content">    
+
+      <center style="font-family: Helvetica,Arial,sans-serif;">
+      <b>Idealized Planet Simulations</b></br></br>
+      </center>
+      CESM was used to perform aquaplanet and drycore simulations. Heat anomalies were injected into the SSTs of aquaplanets and surface anomalies were used for drycore simulations. Anomalies were constructed using different geometries such as disk and bands with constant latitudes. The goal is to explore the effect of these heat anomalies on the polar vortex. 
+
+      <center style="font-family: Helvetica,Arial,sans-serif;">
+      </br><b>Aquaplanet</b></br></br> 
+      </center>
+      
+      </br>Below are figures for a disk SST anomaly at 30N. The field shown is the geopotential height at 250 hPa. Also shown is the power spectra for the same field. 
+      
+      <four-figs> 
+      <img src="pics/Z3_avg_250_aqua_anomaly_disk_val10.0_rad10.0_lat30_lon0.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_spectrum_250_aqua_anomaly_disk_val10.0_rad10.0_lat30_lon0.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_250_aqua_anomaly_disk_val10.0_rad10.0_lat30_lon0_anomaly.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_spectrum_250_aqua_anomaly_disk_val10.0_rad10.0_lat30_lon0_anomaly.png" alt="" width="230" height="225" id="pic" class="left"/>
+      </four-figs>
+
+      </br></br>Below are figures for a band SST anomaly at 30N. The field shown is the geopotential height at 250 hPa. Also shown is the power spectra for the same field. 
+      
+      <four-figs>
+      <img src="pics/Z3_avg_250_aqua_anomaly_zonal_band_val10.0_rad10.0_lat30_lon0.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_spectrum_250_aqua_anomaly_zonal_band_val10.0_rad10.0_lat30_lon0.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_250_aqua_anomaly_zonal_band_val10.0_rad10.0_lat30_lon0_anomaly.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_spectrum_250_aqua_anomaly_zonal_band_val10.0_rad10.0_lat30_lon0_anomaly.png" alt="" width="230" height="225" id="pic" class="left"/>
+      </four-figs>
+
+      <center style="font-family: Helvetica,Arial,sans-serif;">
+      </br><b>Drycore</b></br></br> 
+      </center>
+
+      </br>Below are figures for a disk surface anomaly at 30N. The field shown is the geopotential height at 250 hPa. Also shown is the power spectra for the same field. 
+      
+      <four-figs> 
+      <img src="pics/Z3_avg_250_drycore_anomaly_disk_val10.0_rad10.0_lat30_lon0.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_spectrum_250_drycore_anomaly_disk_val10.0_rad10.0_lat30_lon0.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_250_drycore_anomaly_disk_val10.0_rad10.0_lat30_lon0_anomaly.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_spectrum_250_drycore_anomaly_disk_val10.0_rad10.0_lat30_lon0_anomaly.png" alt="" width="230" height="225" id="pic" class="left"/>
+      </four-figs>
+
+      </br></br>Below are figures for a band surface anomaly at 30N. The field shown is the geopotential height at 250 hPa. Also shown is the power spectra for the same field. 
+      
+      <four-figs>
+      <img src="pics/Z3_avg_250_drycore_anomaly_zonal_band_val10.0_rad10.0_lat30_lon0.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_spectrum_250_drycore_anomaly_zonal_band_val10.0_rad10.0_lat30_lon0.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_250_drycore_anomaly_zonal_band_val10.0_rad10.0_lat30_lon0_anomaly.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_spectrum_250_drycore_anomaly_zonal_band_val10.0_rad10.0_lat30_lon0_anomaly.png" alt="" width="230" height="225" id="pic" class="left"/>
+      </four-figs>
+     
+      <center style="font-family: Helvetica,Arial,sans-serif;">
+      </br><b>Drycore with Lapse Rate</b></br></br> 
+      </center>
+
+      </br>Below are figures for a disk surface anomaly at 30N. A vertical lapse rate was included in these simluations. The field shown is the geopotential height at 250 hPa. Also shown is the power spectra for the same field. 
+      
+      <four-figs> 
+      <img src="pics/Z3_avg_250_drycore_lapse_anomaly_disk_val10.0_rad10.0_lat30_lon0.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_spectrum_250_drycore_lapse_anomaly_disk_val10.0_rad10.0_lat30_lon0.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_250_drycore_lapse_anomaly_disk_val10.0_rad10.0_lat30_lon0_anomaly.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_spectrum_250_drycore_lapse_anomaly_disk_val10.0_rad10.0_lat30_lon0_anomaly.png" alt="" width="230" height="225" id="pic" class="left"/>
+      </four-figs>
+
+      </br></br>Below are figures for a band surface anomaly at 30N. A vertical lapse rate was included in these simluations. The field shown is the geopotential height at 250 hPa. Also shown is the power spectra for the same field. 
+      
+      <four-figs>
+      <img src="pics/Z3_avg_250_drycore_lapse_anomaly_zonal_band_val10.0_rad10.0_lat30_lon0.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_spectrum_250_drycore_lapse_anomaly_zonal_band_val10.0_rad10.0_lat30_lon0.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_250_drycore_lapse_anomaly_zonal_band_val10.0_rad10.0_lat30_lon0_anomaly.png" alt="" width="230" height="225" id="pic" class="left"/>
+      <img src="pics/Z3_avg_spectrum_250_drycore_lapse_anomaly_zonal_band_val10.0_rad10.0_lat30_lon0_anomaly.png" alt="" width="230" height="225" id="pic" class="left"/>
+      </four-figs>
+
+  </div>
+
+  </body>
+</html> 
