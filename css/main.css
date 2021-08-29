@@ -35,7 +35,7 @@ ul#navbar li {
 
 ul#navbar a:link, a:visited {
     display: block;
-    width: 200px;
+    width: 150px;
     font-weight: bold;
     color: black;
     background-color: #ebf0f2;
