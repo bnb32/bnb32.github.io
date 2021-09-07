@@ -46,7 +46,7 @@ ul#navbar a:link, a:visited {
 }
 
 ul#navbar a:hover, a:active {
-    background-color: red;
+    background-color: white;
 }
 
 img {
@@ -95,20 +95,22 @@ div#contentpane {
 
 div#name {
     vertical-align: top;
-    background-color: #00191a;
+    background-color: #ebf0f2;
     text-align: center;
     z-index: 0;
     height: 210px;
     font-size: 125%;
     font-family: Helvetica, Arial, sans-serif;
+    font-style: bold;
     border-width: 4pt;
     border-style: solid;
-    border-color: #a8acad;
-    color: white;
+    border-color: #ebf0f2;
+    color: black;
+    visibility: visible;
 }
 
 div#name a:link, a:visited {
-    color: red;
+    color: black;
 }
 
 div#name a:hover {
@@ -123,7 +125,7 @@ div#mainpic {
     background-color: #ebf0f2;
     border-width: 4pt;
     border-style: solid;
-    border-color: #a8acad;
+    border-color:#a8acad;
     margin-left: 40px;
     margin-top: 2%;
     margin-bottom: 2%;
@@ -188,6 +190,21 @@ h1{
     visibility: visible;
 }
 
+h2{
+    color: black;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 45px;
+    margin-top: -10px;
+}
+
+
+h3{
+    color: black;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 25px;
+    margin-top: -35px;
+}
+
 .head{
     height: 5px;
     color: #000000;
@@ -223,6 +240,15 @@ h1{
     padding: 10px;
     text-align: justify;
 }
+
+b:link {
+    color:white;
+}
+
+b:visited {
+    color: white;
+}
+
 
 a:link {
     color: black;
