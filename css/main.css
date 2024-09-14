@@ -81,11 +81,10 @@ div#contentpane {
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: -1%;
+    margin-bottom: 1%;
     color: #000000;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 100%;
-    width: auto;
     width: 900px;
     background-color: #ebf0f2;
     border-width: 4pt;
@@ -129,7 +128,7 @@ div#mainpic {
     margin-left: 40px;
     margin-top: 2%;
     margin-bottom: 2%;
-    width: 150px;
+    width: 148px;
     height: 210px;
 }
 
