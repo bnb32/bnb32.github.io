@@ -1,16 +1,19 @@
 body {
-background-color: #fdfdfd;
 z-index: 0;
 margin-top: 15px;
+background-color:transparent
 }
 
 #pic  {
-float: left;
+ float: left;
  margin: 0 15px 0 0;
 }
 
 div#wrapper {
-    position: fixed;
+	background-color:rgb(241, 241, 241);
+    position: relative;
+	background-size:cover;
+	background-position:center center;
     top: 10px;
     width: 100%;
     font-family: Helvetica, Arial, sans-serif;
@@ -28,9 +31,6 @@ ul#navbar {
 ul#navbar li {
     display: inline-block;
     margin-top: 0;
-    border-width: 4px;
-    border-style: solid;
-    border-color: #fdfdfd;
 }
 
 ul#navbar a:link, a:visited {
@@ -38,7 +38,7 @@ ul#navbar a:link, a:visited {
     width: 150px;
     font-weight: bold;
     color: black;
-    background-color: #fdfdfd;
+    background-color:transparent;
     text-align: center;
     padding: 4px;
     text-decoration: none;
@@ -46,7 +46,7 @@ ul#navbar a:link, a:visited {
 }
 
 ul#navbar a:hover, a:active {
-    background-color: white;
+    background-color:transparent;
 }
 
 img {
@@ -60,52 +60,37 @@ img {
 
 div#headpane {
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0px;
+    margin-right: 0px;
     margin-top: 0%;
     margin-bottom: 0%;
     color: #323333;
     font-family: Helvetica, Arial, sans-serif;
-    background-color: #fdfdfd;
-    border-width: 4pt;
-    border-style: solid;
+    background-color:transparent;
     z-index: 0;
-    border-color: #fdfdfd;
-    width: 900px;
-    height: 255px;
 }
 
 div#contentpane {
     text-align:justify;
     position: relative;
     margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5%;
+    margin-right: 5%;
     margin-bottom: 1%;
     color: #000000;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 100%;
-    width: 900px;
-    background-color: #fdfdfd;
-    border-width: 4pt;
-    border-style: solid;
-    border-color: #fdfdfd;
+    background-color:white
 }
 
 div#name {
     vertical-align: top;
-    background-color: #fdfdfd;
     text-align: center;
     z-index: 0;
     height: 230px;
     font-size: 125%;
     font-family: Helvetica, Arial, sans-serif;
     font-style: bold;
-    border-width: 4pt;
-    border-style: solid;
-    border-color: #fdfdfd;
-    color: black;
-    visibility: visible;
 }
 
 div#name a:link, a:visited {
@@ -121,11 +106,8 @@ div#name a:hover {
 div#mainpic {
     display: inline-block;
     vertical-align: center;
-    background-color: #fdfdfd;
-    border-width: 4pt;
-    border-style: solid;
-    border-color:#fdfdfd;
-    margin-left: 40px;
+    background-color:transparent;
+    margin-left: 20%;
     margin-top: 2%;
     margin-bottom: 2%;
     width: 148px;
@@ -143,7 +125,6 @@ span#bb {
     margin-right: 2%;
     margin-top: 1%;
     margin-bottom: 1%;
-    width: 775px;
 }
 
 .left {
@@ -154,6 +135,7 @@ span#bb {
     margin-top: 2%;
     margin-bottom: 2%;
     width: 605px;
+    background-color:transparent;
 }
 
 div#content {
@@ -163,21 +145,14 @@ div#content {
     margin-right:40px;
     width: auto;
     font-family: Helvetica, Arial, sans-serif;
-/*border-top: 2pt #000000 solid;
-z-index: 0;*/
-}
-
-div#footer {
-    position: relative;
-    font-family: Helvetica, Arial, sans-serif;
-    top: 20px;
-    font-size:80%;
+    background-color:white;
 }
 
 #contentpane p {
     height: auto;
-    margin-left: 10px;
+    margin-left: 2%;
     font-family: Helvetica, Arial, sans-serif;
+    background-color:white;
 }
 
 h1{
@@ -187,6 +162,7 @@ h1{
     margin-top: -50px;
     font-family: Helvetica, Arial, sans-serif;
     visibility: visible;
+    background-color:white;
 }
 
 h2{
@@ -214,7 +190,7 @@ h4{
 .head{
     height: 5px;
     color: #000000;
-    background-color: #000000;
+    background-color:transparent;
     margin-bottom: 20px;
 }
 
@@ -276,7 +252,9 @@ hr {
 }
 
 
-progress {background-color: white;}
+progress {
+    background-color: transparent;
+}
 
 .center {
     display: block;
