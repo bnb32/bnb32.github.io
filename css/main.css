@@ -1,5 +1,5 @@
 body {
-background-color: #00191a;
+background-color: #fdfdfd;
 z-index: 0;
 margin-top: 15px;
 }
@@ -30,7 +30,7 @@ ul#navbar li {
     margin-top: 0;
     border-width: 4px;
     border-style: solid;
-    border-color: #a8acad;
+    border-color: #fdfdfd;
 }
 
 ul#navbar a:link, a:visited {
@@ -38,7 +38,7 @@ ul#navbar a:link, a:visited {
     width: 150px;
     font-weight: bold;
     color: black;
-    background-color: #ebf0f2;
+    background-color: #fdfdfd;
     text-align: center;
     padding: 4px;
     text-decoration: none;
@@ -66,11 +66,11 @@ div#headpane {
     margin-bottom: 0%;
     color: #323333;
     font-family: Helvetica, Arial, sans-serif;
-    background-color: #ebf0f2;
+    background-color: #fdfdfd;
     border-width: 4pt;
     border-style: solid;
     z-index: 0;
-    border-color: #a8acad;
+    border-color: #fdfdfd;
     width: 900px;
     height: 255px;
 }
@@ -86,15 +86,15 @@ div#contentpane {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 100%;
     width: 900px;
-    background-color: #ebf0f2;
+    background-color: #fdfdfd;
     border-width: 4pt;
     border-style: solid;
-    border-color: #a8acad;
+    border-color: #fdfdfd;
 }
 
 div#name {
     vertical-align: top;
-    background-color: #ebf0f2;
+    background-color: #fdfdfd;
     text-align: center;
     z-index: 0;
     height: 230px;
@@ -103,7 +103,7 @@ div#name {
     font-style: bold;
     border-width: 4pt;
     border-style: solid;
-    border-color: #ebf0f2;
+    border-color: #fdfdfd;
     color: black;
     visibility: visible;
 }
@@ -121,10 +121,10 @@ div#name a:hover {
 div#mainpic {
     display: inline-block;
     vertical-align: center;
-    background-color: #ebf0f2;
+    background-color: #fdfdfd;
     border-width: 4pt;
     border-style: solid;
-    border-color:#a8acad;
+    border-color:#fdfdfd;
     margin-left: 40px;
     margin-top: 2%;
     margin-bottom: 2%;
