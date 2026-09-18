@@ -45,10 +45,11 @@ $document = @"
   <body>
     <div id="wrapper">
       <ul id="navbar">
-        <li><a href="index.html#about">About Me</a></li>
-        <li><a href="index.html#research">Research</a></li>
-        <li><a href="index.html#sides">Side Projects</a></li>
-        <li><a href="index.html#teaching">Teaching</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="projects.html">Side Projects</a></li>
+        <li><a href="teaching.html">Teaching</a></li>
+        <!--<li><a href="hobbies.html">Hobbies</a></li>-->
         <li><a href="photography.html">Photography</a></li>
       </ul>
     </div>
