@@ -6,3 +6,4 @@ cp -r ../../public_html/docs ./
 cp -r ../../public_html/pics ./
 cp -r ../../public_html/php ./
 cp ../../public_html/index.html ./index.html
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./generate-photography.ps1
