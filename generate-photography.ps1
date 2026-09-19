@@ -7,7 +7,7 @@ if (-not (Test-Path -Path $photoDirectory -PathType Container)) {
 
 $photos = Get-ChildItem -Path $photoDirectory -File |
     Where-Object { $_.Extension -match '^(?i)\.(jpg|jpeg|png)$' } |
-    Sort-Object Name
+  Sort-Object CreationTime, Name -Descending
 
 $galleryItems = foreach ($photo in $photos) {
     $relativePath = "pics/photos/$($photo.Name)"
