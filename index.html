@@ -33,6 +33,73 @@
       div#footer {
           font-size: 80%;
       }
+        div#headpane {
+          display: flex;
+          align-items: center;
+          min-height: 190px;
+          padding: 18px 6%;
+          box-sizing: border-box;
+        }
+        div#headpane .left {
+          width: auto;
+          margin: 0;
+        }
+        div#headpane #name {
+          height: auto;
+          text-align: left;
+          font-size: 100%;
+        }
+        div#headpane h2 {
+          font-size: 32px;
+          margin: 0 0 6px;
+        }
+        div#headpane h3 {
+          font-size: 18px;
+          margin: 0 0 4px;
+        }
+        div#headpane h4 {
+          font-size: 15px;
+          margin: 0 0 12px;
+        }
+        div#headpane #name a {
+          font-size: 18px;
+          margin-right: 8px;
+        }
+        div#headpane #mainpic {
+          flex: 0 0 120px;
+          width: 120px;
+          height: 155px;
+          margin: 0 0 0 32px;
+        }
+        div#headpane #mainpic img {
+          max-width: 100%;
+          height: 155px;
+          object-fit: cover;
+        }
+        @media (max-width: 640px) {
+          div#headpane {
+            min-height: 0;
+            padding: 20px 5%;
+          }
+          div#headpane #mainpic {
+            flex-basis: 90px;
+            width: 90px;
+            height: 120px;
+            margin-left: 20px;
+          }
+          div#headpane #mainpic img {
+            height: 120px;
+          }
+          div#headpane h2 {
+            font-size: 25px;
+          }
+          div#headpane h3 {
+            font-size: 15px;
+          }
+          div#headpane h4 {
+            font-size: 13px;
+          }
+        }
     </style>
     <div id="headpane">
 
