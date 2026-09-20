@@ -34,10 +34,12 @@
           font-size: 80%;
       }
         div#headpane {
-          display: flex;
-          align-items: center;
-          min-height: 190px;
-          padding: 18px 6%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+            min-height: 430px;
+            padding: 24px;
           box-sizing: border-box;
         }
         div#headpane .left {
@@ -66,29 +68,28 @@
           margin-right: 8px;
         }
         div#headpane #mainpic {
-          flex: 0 0 120px;
-          width: 120px;
-          height: 155px;
-          margin: 0 0 0 32px;
+            flex: none;
+            width: 92px;
+            height: auto;
+            margin: 12px 0 0;
         }
         div#headpane #mainpic img {
-          max-width: 100%;
-          height: 155px;
-          object-fit: cover;
+            display: block;
+            width: 92px;
+            height: auto;
+            max-width: 100%;
         }
         @media (max-width: 640px) {
           div#headpane {
-            min-height: 0;
-            padding: 20px 5%;
+              min-height: 360px;
+              padding: 18px;
           }
           div#headpane #mainpic {
-            flex-basis: 90px;
-            width: 90px;
-            height: 120px;
-            margin-left: 20px;
+              width: 76px;
+              margin-top: 10px;
           }
           div#headpane #mainpic img {
-            height: 120px;
+              width: 76px;
           }
           div#headpane h2 {
             font-size: 25px;
