@@ -28,8 +28,7 @@
           background-repeat: no-repeat;
           background-attachment: relative;
           background-position:center top;
-          background-size: contain;
-          background-color: #202020;
+          background-size: cover;
       }
       div#footer {
           font-size: 80%;
@@ -40,7 +39,7 @@
             align-items: flex-start;
             justify-content: flex-start;
             min-height: 0;
-            aspect-ratio: 2048 / 1365;
+            aspect-ratio: 16 / 9;
             padding: 24px;
           box-sizing: border-box;
         }
@@ -83,8 +82,8 @@
         }
         @media (max-width: 640px) {
           div#headpane {
-              min-height: 280px;
-              aspect-ratio: auto;
+              min-height: 0;
+              aspect-ratio: 16 / 9;
               padding: 18px;
           }
           div#headpane #mainpic {
