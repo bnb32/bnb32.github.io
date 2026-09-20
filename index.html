@@ -24,28 +24,24 @@
 
     <style>
       div#headpane {
-          background-image: url('pics/banner.jpg');
-          background-repeat: no-repeat;
-          background-attachment: relative;
-          background-position:center top;
-          background-size: cover;
+          position: relative;
       }
       div#footer {
           font-size: 80%;
       }
         div#headpane {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            justify-content: flex-start;
-            min-height: 0;
-            aspect-ratio: 16 / 9;
-            padding: 24px;
-          box-sizing: border-box;
+            overflow: hidden;
+        }
+        div#headpane .banner-image {
+            display: block;
+            height: auto;
+            width: 100%;
         }
         div#headpane .left {
-          width: auto;
+          left: 140px;
           margin: 0;
+          position: absolute;
+          top: 24px;
         }
         div#headpane #name {
           height: auto;
@@ -73,11 +69,11 @@
           margin-right: 6px;
         }
         div#headpane #mainpic {
-            flex: none;
+            left: 24px;
+            margin: 0;
+            position: absolute;
+            top: 24px;
             width: 92px;
-            height: auto;
-          order: -1;
-          margin: 0 24px 0 0;
         }
         div#headpane #mainpic img {
             display: block;
@@ -87,14 +83,16 @@
         }
         @media (max-width: 640px) {
           div#headpane {
-              flex-direction: row;
               min-height: 0;
-              aspect-ratio: 16 / 9;
-              padding: 18px;
           }
+            div#headpane .left {
+              left: 110px;
+              top: 18px;
+            }
           div#headpane #mainpic {
+              left: 18px;
+              top: 18px;
               width: 76px;
-              margin: 0 16px 0 0;
           }
           div#headpane #mainpic img {
               width: 76px;
@@ -111,6 +109,7 @@
         }
     </style>
     <div id="headpane">
+      <img class="banner-image" src="pics/banner.jpg" alt="">
 
       <div class="left">
         <div id="name">
