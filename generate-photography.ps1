@@ -5,9 +5,39 @@ if (-not (Test-Path -Path $photoDirectory -PathType Container)) {
     throw "Photo directory not found: $photoDirectory"
 }
 
+Add-Type -AssemblyName System.Drawing
+
+function Get-PhotoCaptureTime {
+  param([System.IO.FileInfo]$Photo)
+
+  $image = $null
+  try {
+    $image = [System.Drawing.Image]::FromFile($Photo.FullName)
+    $dateTaken = [System.Text.Encoding]::ASCII.GetString(
+      $image.GetPropertyItem(0x9003).Value
+    ).Trim([char]0)
+
+    return [datetime]::ParseExact(
+      $dateTaken,
+      'yyyy:MM:dd HH:mm:ss',
+      [System.Globalization.CultureInfo]::InvariantCulture
+    )
+  }
+  catch {
+    return $Photo.CreationTime
+  }
+  finally {
+    if ($null -ne $image) {
+      $image.Dispose()
+    }
+  }
+}
+
 $photos = Get-ChildItem -Path $photoDirectory -File |
     Where-Object { $_.Extension -match '^(?i)\.(jpg|jpeg|png)$' } |
-  Sort-Object CreationTime, Name -Descending
+  Sort-Object `
+    @{ Expression = { Get-PhotoCaptureTime $_ }; Descending = $true },
+    @{ Expression = { $_.Name }; Descending = $true }
 
 $galleryItems = foreach ($photo in $photos) {
     $relativePath = "pics/photos/$($photo.Name)"
