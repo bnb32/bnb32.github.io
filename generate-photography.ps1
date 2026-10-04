@@ -36,11 +36,20 @@ function Get-PhotoCaptureTime {
 }
 
 function Get-PhotoCategory {
-  param([string[]]$Keywords)
+  param(
+    [string[]]$Keywords,
+    [string[]]$BirdKeywords = @()
+  )
 
   $keywordSet = @{}
   foreach ($keyword in ($Keywords | Where-Object { $_ })) {
     $keywordSet[$keyword.ToLowerInvariant()] = $true
+  }
+
+  foreach ($birdKeyword in $BirdKeywords) {
+    if ($keywordSet.ContainsKey($birdKeyword)) {
+      return 'Birds'
+    }
   }
 
   $categoryRules = [ordered]@{
@@ -106,15 +115,59 @@ $photos = Get-ChildItem -Path $photoDirectory -File |
       $keywords = @($shellItem.ExtendedProperty('System.Keywords')) |
         Where-Object { $_ -is [string] -and -not [string]::IsNullOrWhiteSpace($_) } |
         ForEach-Object { $_.Trim() }
-      $category = Get-PhotoCategory $keywords
 
       [pscustomobject]@{
         File = $_
         CaptureTime = Get-PhotoCaptureTime $_
         Keywords = $keywords
-        Category = $category
-        Label = Get-PhotoLabel $_ $keywords $category
       }
+    }
+
+$nonSubjectKeywords = @(
+  'animal', 'bird', 'place', 'changed', 'cr3', 'environment', 'exported',
+  'anacortes', 'back yard', 'carkeek park', 'crescent beach', 'front yard',
+  'juanita bay park', 'north shore preserve', 'riverside business park',
+  'smith island habitat & wildlife viewing area', 'union bay natural area',
+  'warren g magnuson park', 'washington park arboretum', 'yesler swamp'
+)
+$birdKeywords = $photos |
+  Where-Object { $_.Keywords -contains 'bird' } |
+  ForEach-Object { $_.Keywords } |
+  Where-Object { $_.ToLowerInvariant() -notin $nonSubjectKeywords } |
+  ForEach-Object { $_.ToLowerInvariant() } |
+  Sort-Object -Unique
+
+$photoOverrides = @{
+  '118A8902_DxO.jpg' = @{ Category = 'Birds'; Label = 'Mallard' }
+  '118A8306_DxO.jpg' = @{ Category = 'Birds'; Label = 'Peregrine Falcon' }
+  '118A8251_DxO.jpg' = @{ Category = 'Birds'; Label = 'Peregrine Falcon' }
+  '118A7309_DxO.jpg' = @{ Category = 'Birds'; Label = 'Red-Winged Blackbird' }
+  '118A7072_DxO.jpg' = @{ Category = 'Birds'; Label = 'Great Blue Heron' }
+  '118A6943_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
+  '118A6942_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
+  '118A6935_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
+  '118A6934_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
+  '118A6933_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
+  '118A6927_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
+  '118A6349_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
+  '118A6254_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
+  '118A6246_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
+  '118A6232_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
+  '118A5814_DxO.jpg' = @{ Category = 'Birds'; Label = "Anna's Hummingbird" }
+  '118A5808_DxO.jpg' = @{ Category = 'Birds'; Label = "Anna's Hummingbird" }
+  '118A5590_DxO.jpg' = @{ Category = 'Birds'; Label = 'Great Blue Heron' }
+  '118A5302_DxO.jpg' = @{ Category = 'Birds'; Label = 'Hooded Merganser' }
+  '118A5282_DxO.jpg' = @{ Category = 'Birds'; Label = 'Mallard' }
+  '118A5279_DxO.jpg' = @{ Category = 'Birds'; Label = 'Mallard' }
+}
+
+$photos = $photos |
+    ForEach-Object {
+      $override = $photoOverrides[$_.File.Name]
+      $category = if ($override) { $override.Category } else { Get-PhotoCategory $_.Keywords $birdKeywords }
+      $label = if ($override) { $override.Label } else { Get-PhotoLabel $_.File $_.Keywords $category }
+      $_ | Add-Member -NotePropertyName Category -NotePropertyValue $category -PassThru |
+        Add-Member -NotePropertyName Label -NotePropertyValue $label -PassThru
     } |
     Sort-Object `
       @{ Expression = { $_.CaptureTime }; Descending = $true },
