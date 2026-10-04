@@ -66,16 +66,27 @@ function Get-PhotoCategory {
 function Get-PhotoLabel {
   param(
     [System.IO.FileInfo]$Photo,
-    [string[]]$Keywords
+    [string[]]$Keywords,
+    [string]$Category
   )
 
-  $genericKeywords = @(
+  $excludedKeywords = @(
     'animal', 'bird', 'place', 'mammal', 'reptile', 'amphibian',
     'invertebrate', 'insect', 'arachnid', 'people', 'person', 'portrait',
     'landscape', 'cityscape', 'changed', 'cr3', 'environment', 'exported'
   )
+
+  if ($Category -in @('Birds', 'Mammals', 'Reptiles & Amphibians', 'Invertebrates')) {
+    $excludedKeywords += @(
+      'anacortes', 'back yard', 'carkeek park', 'crescent beach', 'front yard',
+      'juanita bay park', 'north shore preserve', 'riverside business park',
+      'smith island habitat & wildlife viewing area', 'union bay natural area',
+      'warren g magnuson park', 'washington park arboretum', 'yesler swamp'
+    )
+  }
+
   $label = $Keywords |
-    Where-Object { $_ -and $_.ToLowerInvariant() -notin $genericKeywords } |
+    Where-Object { $_ -and $_.ToLowerInvariant() -notin $excludedKeywords } |
     Select-Object -First 1
 
   if ($label) {
@@ -95,13 +106,14 @@ $photos = Get-ChildItem -Path $photoDirectory -File |
       $keywords = @($shellItem.ExtendedProperty('System.Keywords')) |
         Where-Object { $_ -is [string] -and -not [string]::IsNullOrWhiteSpace($_) } |
         ForEach-Object { $_.Trim() }
+      $category = Get-PhotoCategory $keywords
 
       [pscustomobject]@{
         File = $_
         CaptureTime = Get-PhotoCaptureTime $_
         Keywords = $keywords
-        Category = Get-PhotoCategory $keywords
-        Label = Get-PhotoLabel $_ $keywords
+        Category = $category
+        Label = Get-PhotoLabel $_ $keywords $category
       }
     } |
     Sort-Object `
