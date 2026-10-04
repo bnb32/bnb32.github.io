@@ -137,29 +137,7 @@ $birdKeywords = $photos |
   ForEach-Object { $_.ToLowerInvariant() } |
   Sort-Object -Unique
 
-$photoOverrides = @{
-  '118A8902_DxO.jpg' = @{ Category = 'Birds'; Label = 'Mallard' }
-  '118A8306_DxO.jpg' = @{ Category = 'Birds'; Label = 'Peregrine Falcon' }
-  '118A8251_DxO.jpg' = @{ Category = 'Birds'; Label = 'Peregrine Falcon' }
-  '118A7309_DxO.jpg' = @{ Category = 'Birds'; Label = 'Red-Winged Blackbird' }
-  '118A7072_DxO.jpg' = @{ Category = 'Birds'; Label = 'Great Blue Heron' }
-  '118A6943_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
-  '118A6942_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
-  '118A6935_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
-  '118A6934_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
-  '118A6933_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
-  '118A6927_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
-  '118A6349_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
-  '118A6254_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
-  '118A6246_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
-  '118A6232_DxO.jpg' = @{ Category = 'Birds'; Label = 'Gull' }
-  '118A5814_DxO.jpg' = @{ Category = 'Birds'; Label = "Anna's Hummingbird" }
-  '118A5808_DxO.jpg' = @{ Category = 'Birds'; Label = "Anna's Hummingbird" }
-  '118A5590_DxO.jpg' = @{ Category = 'Birds'; Label = 'Great Blue Heron' }
-  '118A5302_DxO.jpg' = @{ Category = 'Birds'; Label = 'Hooded Merganser' }
-  '118A5282_DxO.jpg' = @{ Category = 'Birds'; Label = 'Mallard' }
-  '118A5279_DxO.jpg' = @{ Category = 'Birds'; Label = 'Mallard' }
-}
+$photoOverrides = @{}
 
 $photos = $photos |
     ForEach-Object {
