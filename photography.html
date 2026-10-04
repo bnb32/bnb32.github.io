@@ -3,6 +3,7 @@
   <head>
     <link rel="icon" href="https://cdn.iconscout.com/icon/premium/png-512-thumb/physics-1829778-1551933.png">
     <meta name="robots" content="index,follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
     <meta content="Brandon N. Benton" name="author">
     <title>Brandon N. Benton - Photography</title>
@@ -10,21 +11,40 @@
     <link href="http://fonts.googleapis.com/css?family=Titillium+Web:400,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <style>
-      #photography-content { margin: 50px auto; max-width: 1200px; padding: 0 24px; }
-      #photography-content h1 { position: static; margin: 0 0 28px; padding: 0; }
-      .photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-      .photo-gallery a { display: block; aspect-ratio: 4 / 3; overflow: hidden; }
-      .photo-gallery img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s ease; }
-      .photo-gallery a:hover img { transform: scale(1.04); }
+      #photography-content { margin: 34px auto; max-width: 1400px; padding: 0 24px; }
+      #photography-content h1 { position: static; margin: 0 0 22px; padding: 0; }
+      .gallery-layout { background: #080808; color: #f5f5f2; display: grid; grid-template-columns: 190px minmax(0, 1fr); min-height: 70vh; padding: 28px; }
+      .category-nav { align-content: start; display: grid; gap: 3px; padding-right: 28px; }
+      .category-nav button { background: transparent; border: 0; color: #aaa; cursor: pointer; font: 16px/1.3 'Titillium Web', sans-serif; padding: 7px 0; text-align: left; }
+      .category-nav button:hover, .category-nav button:focus-visible, .category-nav button.is-active { color: white; }
+      .category-nav button.is-active { font-weight: 700; }
+      .category-nav span { color: #666; float: right; font-size: 13px; }
+      .photo-gallery { display: grid; gap: 5px; grid-auto-flow: dense; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+      .photo-gallery a { background: #171717; display: block; aspect-ratio: 4 / 3; overflow: hidden; }
+      .photo-gallery a[hidden] { display: none; }
+      .photo-gallery img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.25s ease, transform 0.25s ease; }
+      .photo-gallery img.is-loaded { opacity: 1; }
+      .photo-gallery a:hover img { transform: scale(1.025); }
       .lightbox { align-items: center; background: rgba(0, 0, 0, 0.9); display: none; inset: 0; justify-content: center; overflow: auto; position: fixed; z-index: 2; }
       .lightbox.is-open { display: flex; }
-      .lightbox img { cursor: zoom-in; max-height: 88vh; max-width: 88vw; object-fit: contain; }
+      .lightbox-figure { margin: 0; text-align: center; }
+      .lightbox img { cursor: zoom-in; max-height: 82vh; max-width: 88vw; object-fit: contain; }
+      .lightbox figcaption { color: white; font: 18px/1.4 'Titillium Web', sans-serif; margin-top: 10px; }
+      .lightbox-count { color: #999; display: block; font-size: 13px; margin-top: 2px; }
       .lightbox.is-zoomed { align-items: flex-start; justify-content: flex-start; padding: 24px; }
       .lightbox.is-zoomed img { cursor: zoom-out; max-height: none; max-width: none; }
       .lightbox button { background: transparent; border: 0; color: white; cursor: pointer; font-size: 42px; line-height: 1; padding: 16px; position: fixed; }
       .lightbox-close { right: 16px; top: 16px; }
       .lightbox-previous { left: 16px; top: 50%; transform: translateY(-50%); }
       .lightbox-next { right: 16px; top: 50%; transform: translateY(-50%); }
+      @media (max-width: 700px) {
+        #photography-content { padding: 0 12px; }
+        .gallery-layout { grid-template-columns: 1fr; padding: 16px; }
+        .category-nav { display: flex; gap: 18px; overflow-x: auto; padding: 0 0 16px; white-space: nowrap; }
+        .category-nav button { flex: 0 0 auto; }
+        .category-nav span { float: none; margin-left: 4px; }
+        .photo-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
     </style>
   </head>
   <body>
@@ -40,227 +60,247 @@
     </div>
     <main id="photography-content">
       <h1>Photography</h1>
-      <div class="photo-gallery">
-        <a href="pics/photos/118A9268_DxO.jpg"><img src="pics/photos/118A9268_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A9191_DxO.jpg"><img src="pics/photos/118A9191_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A9179_DxO.jpg"><img src="pics/photos/118A9179_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A9167_DxO.jpg"><img src="pics/photos/118A9167_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A9164_DxO.jpg"><img src="pics/photos/118A9164_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A9083_DxO.jpg"><img src="pics/photos/118A9083_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8930_DxO.jpg"><img src="pics/photos/118A8930_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8902_DxO.jpg"><img src="pics/photos/118A8902_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8856_DxO.jpg"><img src="pics/photos/118A8856_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8844_DxO.jpg"><img src="pics/photos/118A8844_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8563_DxO.jpg"><img src="pics/photos/118A8563_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8439_DxO.jpg"><img src="pics/photos/118A8439_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8435_DxO.jpg"><img src="pics/photos/118A8435_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8325_DxO.jpg"><img src="pics/photos/118A8325_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8324_DxO.jpg"><img src="pics/photos/118A8324_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8306_DxO.jpg"><img src="pics/photos/118A8306_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8288_DxO.jpg"><img src="pics/photos/118A8288_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8251_DxO.jpg"><img src="pics/photos/118A8251_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8229_DxO.jpg"><img src="pics/photos/118A8229_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8208_DxO.jpg"><img src="pics/photos/118A8208_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8192_DxO.jpg"><img src="pics/photos/118A8192_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8180_DxO.jpg"><img src="pics/photos/118A8180_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8178_DxO-2.jpg"><img src="pics/photos/118A8178_DxO-2.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8178_DxO.jpg"><img src="pics/photos/118A8178_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8177_DxO.jpg"><img src="pics/photos/118A8177_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8044_DxO.jpg"><img src="pics/photos/118A8044_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A8011_DxO.jpg"><img src="pics/photos/118A8011_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7966_DxO.jpg"><img src="pics/photos/118A7966_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7947_DxO.jpg"><img src="pics/photos/118A7947_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7946_DxO.jpg"><img src="pics/photos/118A7946_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7944_DxO.jpg"><img src="pics/photos/118A7944_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7933_DxO.jpg"><img src="pics/photos/118A7933_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7925_DxO.jpg"><img src="pics/photos/118A7925_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7912_DxO.jpg"><img src="pics/photos/118A7912_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7902_DxO.jpg"><img src="pics/photos/118A7902_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7892_DxO.jpg"><img src="pics/photos/118A7892_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7814_DxO.jpg"><img src="pics/photos/118A7814_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7810_DxO.jpg"><img src="pics/photos/118A7810_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7788_DxO.jpg"><img src="pics/photos/118A7788_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7689_DxO.jpg"><img src="pics/photos/118A7689_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7658_DxO.jpg"><img src="pics/photos/118A7658_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7624_DxO.jpg"><img src="pics/photos/118A7624_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7616_DxO.jpg"><img src="pics/photos/118A7616_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7599_DxO.jpg"><img src="pics/photos/118A7599_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7470_DxO.jpg"><img src="pics/photos/118A7470_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7439_DxO.jpg"><img src="pics/photos/118A7439_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7424_DxO.jpg"><img src="pics/photos/118A7424_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7392_DxO.jpg"><img src="pics/photos/118A7392_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7390_DxO.jpg"><img src="pics/photos/118A7390_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7379_DxO.jpg"><img src="pics/photos/118A7379_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7332_DxO.jpg"><img src="pics/photos/118A7332_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7314_DxO.jpg"><img src="pics/photos/118A7314_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7310_DxO.jpg"><img src="pics/photos/118A7310_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7309_DxO.jpg"><img src="pics/photos/118A7309_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7304_DxO.jpg"><img src="pics/photos/118A7304_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7262_DxO.jpg"><img src="pics/photos/118A7262_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7247_DxO.jpg"><img src="pics/photos/118A7247_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7240_DxO.jpg"><img src="pics/photos/118A7240_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7233_DxO.jpg"><img src="pics/photos/118A7233_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7222_DxO.jpg"><img src="pics/photos/118A7222_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7162_DxO.jpg"><img src="pics/photos/118A7162_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7158_DxO.jpg"><img src="pics/photos/118A7158_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7142_DxO.jpg"><img src="pics/photos/118A7142_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7140_DxO.jpg"><img src="pics/photos/118A7140_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7126_DxO.jpg"><img src="pics/photos/118A7126_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7072_DxO.jpg"><img src="pics/photos/118A7072_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7009_DxO.jpg"><img src="pics/photos/118A7009_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7007_DxO.jpg"><img src="pics/photos/118A7007_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7004_DxO.jpg"><img src="pics/photos/118A7004_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A7001_DxO.jpg"><img src="pics/photos/118A7001_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6981_DxO.jpg"><img src="pics/photos/118A6981_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6943_DxO.jpg"><img src="pics/photos/118A6943_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6942_DxO.jpg"><img src="pics/photos/118A6942_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6935_DxO.jpg"><img src="pics/photos/118A6935_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6934_DxO.jpg"><img src="pics/photos/118A6934_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6933_DxO.jpg"><img src="pics/photos/118A6933_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6927_DxO.jpg"><img src="pics/photos/118A6927_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6771_DxO.jpg"><img src="pics/photos/118A6771_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6766_DxO.jpg"><img src="pics/photos/118A6766_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6759_DxO.jpg"><img src="pics/photos/118A6759_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6458_DxO.jpg"><img src="pics/photos/118A6458_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6454_DxO.jpg"><img src="pics/photos/118A6454_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6445_DxO.jpg"><img src="pics/photos/118A6445_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6418_DxO.jpg"><img src="pics/photos/118A6418_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6396_DxO.jpg"><img src="pics/photos/118A6396_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6372_DxO.jpg"><img src="pics/photos/118A6372_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6349_DxO.jpg"><img src="pics/photos/118A6349_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6330_DxO.jpg"><img src="pics/photos/118A6330_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6317_DxO.jpg"><img src="pics/photos/118A6317_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6289_DxO.jpg"><img src="pics/photos/118A6289_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6254_DxO.jpg"><img src="pics/photos/118A6254_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6246_DxO.jpg"><img src="pics/photos/118A6246_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6232_DxO.jpg"><img src="pics/photos/118A6232_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6093_DxO.jpg"><img src="pics/photos/118A6093_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6090_DxO.jpg"><img src="pics/photos/118A6090_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6089_DxO.jpg"><img src="pics/photos/118A6089_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6088_DxO.jpg"><img src="pics/photos/118A6088_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6083_DxO.jpg"><img src="pics/photos/118A6083_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6047_DxO.jpg"><img src="pics/photos/118A6047_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6045_DxO.jpg"><img src="pics/photos/118A6045_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A6007_DxO.jpg"><img src="pics/photos/118A6007_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5931_DxO.jpg"><img src="pics/photos/118A5931_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5928_DxO.jpg"><img src="pics/photos/118A5928_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5908_DxO.jpg"><img src="pics/photos/118A5908_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5877_DxO.jpg"><img src="pics/photos/118A5877_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5859_DxO.jpg"><img src="pics/photos/118A5859_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5814_DxO.jpg"><img src="pics/photos/118A5814_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5808_DxO.jpg"><img src="pics/photos/118A5808_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5659_DxO.jpg"><img src="pics/photos/118A5659_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5617_DxO.jpg"><img src="pics/photos/118A5617_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5590_DxO.jpg"><img src="pics/photos/118A5590_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5537_DxO.jpg"><img src="pics/photos/118A5537_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5444_DxO.jpg"><img src="pics/photos/118A5444_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5338_DxO.jpg"><img src="pics/photos/118A5338_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5302_DxO.jpg"><img src="pics/photos/118A5302_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5287_DxO.jpg"><img src="pics/photos/118A5287_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5282_DxO.jpg"><img src="pics/photos/118A5282_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5279_DxO.jpg"><img src="pics/photos/118A5279_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5230_DxO.jpg"><img src="pics/photos/118A5230_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5221_DxO.jpg"><img src="pics/photos/118A5221_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5220_DxO.jpg"><img src="pics/photos/118A5220_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5212_DxO.jpg"><img src="pics/photos/118A5212_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5208_DxO-1.jpg"><img src="pics/photos/118A5208_DxO-1.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5208_DxO.jpg"><img src="pics/photos/118A5208_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5206_DxO.jpg"><img src="pics/photos/118A5206_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5205_DxO.jpg"><img src="pics/photos/118A5205_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5195_DxO.jpg"><img src="pics/photos/118A5195_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5171_DxO.jpg"><img src="pics/photos/118A5171_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5163_DxO.jpg"><img src="pics/photos/118A5163_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5157_DxO.jpg"><img src="pics/photos/118A5157_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5152_DxO.jpg"><img src="pics/photos/118A5152_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5147_DxO.jpg"><img src="pics/photos/118A5147_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5115_DxO.jpg"><img src="pics/photos/118A5115_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A5102_DxO.jpg"><img src="pics/photos/118A5102_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4760_DxO.jpg"><img src="pics/photos/118A4760_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4759_DxO.jpg"><img src="pics/photos/118A4759_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4746_DxO.jpg"><img src="pics/photos/118A4746_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4711_DxO.jpg"><img src="pics/photos/118A4711_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4677_DxO.jpg"><img src="pics/photos/118A4677_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4676_DxO.jpg"><img src="pics/photos/118A4676_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4652_DxO.jpg"><img src="pics/photos/118A4652_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4645_DxO.jpg"><img src="pics/photos/118A4645_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4631_DxO.jpg"><img src="pics/photos/118A4631_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4578_DxO.jpg"><img src="pics/photos/118A4578_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4522_DxO.jpg"><img src="pics/photos/118A4522_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4296_DxO.jpg"><img src="pics/photos/118A4296_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4288_DxO.jpg"><img src="pics/photos/118A4288_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4262_DxO.jpg"><img src="pics/photos/118A4262_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4142_DxO.jpg"><img src="pics/photos/118A4142_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4076_DxO.jpg"><img src="pics/photos/118A4076_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4048_DxO-1.jpg"><img src="pics/photos/118A4048_DxO-1.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A4048_DxO.jpg"><img src="pics/photos/118A4048_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A3957_DxO.jpg"><img src="pics/photos/118A3957_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A3546_DxO.jpg"><img src="pics/photos/118A3546_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A3399_DxO.jpg"><img src="pics/photos/118A3399_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A3396_DxO.jpg"><img src="pics/photos/118A3396_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A2983_DxO.jpg"><img src="pics/photos/118A2983_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A2484_DxO.jpg"><img src="pics/photos/118A2484_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A2431_DxO.jpg"><img src="pics/photos/118A2431_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A2270_DxO.jpg"><img src="pics/photos/118A2270_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A1919_DxO.jpg"><img src="pics/photos/118A1919_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A1870_DxO.jpg"><img src="pics/photos/118A1870_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A1810_DxO.jpg"><img src="pics/photos/118A1810_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A1713_DxO.jpg"><img src="pics/photos/118A1713_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A1707_DxO.jpg"><img src="pics/photos/118A1707_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A0350_DxO.jpg"><img src="pics/photos/118A0350_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A0348_DxO.jpg"><img src="pics/photos/118A0348_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A9986_DxO.jpg"><img src="pics/photos/118A9986_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A9807_DxO.jpg"><img src="pics/photos/118A9807_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/118A9400_DxO.jpg"><img src="pics/photos/118A9400_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A9264_DxO.jpg"><img src="pics/photos/4M6A9264_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A9246_DxO.jpg"><img src="pics/photos/4M6A9246_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A9177_DxO.jpg"><img src="pics/photos/4M6A9177_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A6647_DxO.jpg"><img src="pics/photos/4M6A6647_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A6136_DxO.jpg"><img src="pics/photos/4M6A6136_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A6122_DxO.jpg"><img src="pics/photos/4M6A6122_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A5968_DxO.jpg"><img src="pics/photos/4M6A5968_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A5931_DxO.jpg"><img src="pics/photos/4M6A5931_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A5347_DxO.jpg"><img src="pics/photos/4M6A5347_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A5337_DxO.jpg"><img src="pics/photos/4M6A5337_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A5114_DxO.jpg"><img src="pics/photos/4M6A5114_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A5111_DxO.jpg"><img src="pics/photos/4M6A5111_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A5102_DxO.jpg"><img src="pics/photos/4M6A5102_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A5096_DxO.jpg"><img src="pics/photos/4M6A5096_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A4996_DxO.jpg"><img src="pics/photos/4M6A4996_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A4995_DxO.jpg"><img src="pics/photos/4M6A4995_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A4992_DxO.jpg"><img src="pics/photos/4M6A4992_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/4M6A4924_DxO.jpg"><img src="pics/photos/4M6A4924_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/IMG_3960_DxO.jpg"><img src="pics/photos/IMG_3960_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/IMG_3801_DxO.jpg"><img src="pics/photos/IMG_3801_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/IMG_3779_DxO.jpg"><img src="pics/photos/IMG_3779_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/IMG_3677_DxO.jpg"><img src="pics/photos/IMG_3677_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/IMG_3648_DxO.jpg"><img src="pics/photos/IMG_3648_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/IMG_3625_DxO.jpg"><img src="pics/photos/IMG_3625_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/IMG_3507_DxO.jpg"><img src="pics/photos/IMG_3507_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/20260710_8167_DxO.jpg"><img src="pics/photos/20260710_8167_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/20260703_9553_DxO.jpg"><img src="pics/photos/20260703_9553_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/20260703_1828_DxO.jpg"><img src="pics/photos/20260703_1828_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/20260703_1808_DxO.jpg"><img src="pics/photos/20260703_1808_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/20260703_1806_DxO.jpg"><img src="pics/photos/20260703_1806_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/20260703_1803_DxO.jpg"><img src="pics/photos/20260703_1803_DxO.jpg" alt="Photograph by Brandon Benton"></a>
-        <a href="pics/photos/20260703_1791_DxO.jpg"><img src="pics/photos/20260703_1791_DxO.jpg" alt="Photograph by Brandon Benton"></a>
+      <div class="gallery-layout">
+        <nav aria-label="Photo categories" class="category-nav">
+          <button aria-pressed="true" class="is-active" data-category="all" type="button">All <span>202</span></button>
+          <button aria-pressed="false" data-category="birds" type="button">Birds <span>129</span></button>
+          <button aria-pressed="false" data-category="mammals" type="button">Mammals <span>15</span></button>
+          <button aria-pressed="false" data-category="places" type="button">Places <span>30</span></button>
+          <button aria-pressed="false" data-category="other" type="button">Other <span>28</span></button>
+        </nav>
+        <div class="photo-gallery">
+          <a data-category="birds" data-label="Greater White-Fronted Goose" href="pics/photos/118A9268_DxO.jpg"><img src="pics/photos/118A9268_DxO.jpg" alt="Greater White-Fronted Goose" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A9191_DxO.jpg"><img src="pics/photos/118A9191_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A9179_DxO.jpg"><img src="pics/photos/118A9179_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A9167_DxO.jpg"><img src="pics/photos/118A9167_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A9164_DxO.jpg"><img src="pics/photos/118A9164_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Clay-Colored Sparrow" href="pics/photos/118A9083_DxO.jpg"><img src="pics/photos/118A9083_DxO.jpg" alt="Clay-Colored Sparrow" loading="lazy"></a>
+          <a data-category="birds" data-label="Green Heron" href="pics/photos/118A8930_DxO.jpg"><img src="pics/photos/118A8930_DxO.jpg" alt="Green Heron" loading="lazy"></a>
+          <a data-category="places" data-label="Union Bay Natural Area" href="pics/photos/118A8902_DxO.jpg"><img src="pics/photos/118A8902_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="birds" data-label="Green Heron" href="pics/photos/118A8856_DxO.jpg"><img src="pics/photos/118A8856_DxO.jpg" alt="Green Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Green Heron" href="pics/photos/118A8844_DxO.jpg"><img src="pics/photos/118A8844_DxO.jpg" alt="Green Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Union Bay Natural Area" href="pics/photos/118A8563_DxO.jpg"><img src="pics/photos/118A8563_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="places" data-label="Smith Island Habitat &amp; Wildlife Viewing Area" href="pics/photos/118A8439_DxO.jpg"><img src="pics/photos/118A8439_DxO.jpg" alt="Smith Island Habitat &amp; Wildlife Viewing Area" loading="lazy"></a>
+          <a data-category="places" data-label="Smith Island Habitat &amp; Wildlife Viewing Area" href="pics/photos/118A8435_DxO.jpg"><img src="pics/photos/118A8435_DxO.jpg" alt="Smith Island Habitat &amp; Wildlife Viewing Area" loading="lazy"></a>
+          <a data-category="birds" data-label="Bald Eagle" href="pics/photos/118A8325_DxO.jpg"><img src="pics/photos/118A8325_DxO.jpg" alt="Bald Eagle" loading="lazy"></a>
+          <a data-category="places" data-label="Smith Island Habitat &amp; Wildlife Viewing Area" href="pics/photos/118A8324_DxO.jpg"><img src="pics/photos/118A8324_DxO.jpg" alt="Smith Island Habitat &amp; Wildlife Viewing Area" loading="lazy"></a>
+          <a data-category="places" data-label="Smith Island Habitat &amp; Wildlife Viewing Area" href="pics/photos/118A8306_DxO.jpg"><img src="pics/photos/118A8306_DxO.jpg" alt="Smith Island Habitat &amp; Wildlife Viewing Area" loading="lazy"></a>
+          <a data-category="birds" data-label="Peregrine Falcon" href="pics/photos/118A8288_DxO.jpg"><img src="pics/photos/118A8288_DxO.jpg" alt="Peregrine Falcon" loading="lazy"></a>
+          <a data-category="places" data-label="Smith Island Habitat &amp; Wildlife Viewing Area" href="pics/photos/118A8251_DxO.jpg"><img src="pics/photos/118A8251_DxO.jpg" alt="Smith Island Habitat &amp; Wildlife Viewing Area" loading="lazy"></a>
+          <a data-category="birds" data-label="American Goldfinch" href="pics/photos/118A8229_DxO.jpg"><img src="pics/photos/118A8229_DxO.jpg" alt="American Goldfinch" loading="lazy"></a>
+          <a data-category="places" data-label="Smith Island Habitat &amp; Wildlife Viewing Area" href="pics/photos/118A8208_DxO.jpg"><img src="pics/photos/118A8208_DxO.jpg" alt="Smith Island Habitat &amp; Wildlife Viewing Area" loading="lazy"></a>
+          <a data-category="places" data-label="Smith Island Habitat &amp; Wildlife Viewing Area" href="pics/photos/118A8192_DxO.jpg"><img src="pics/photos/118A8192_DxO.jpg" alt="Smith Island Habitat &amp; Wildlife Viewing Area" loading="lazy"></a>
+          <a data-category="birds" data-label="Belted Kingfisher" href="pics/photos/118A8180_DxO.jpg"><img src="pics/photos/118A8180_DxO.jpg" alt="Belted Kingfisher" loading="lazy"></a>
+          <a data-category="birds" data-label="Belted Kingfisher" href="pics/photos/118A8178_DxO-2.jpg"><img src="pics/photos/118A8178_DxO-2.jpg" alt="Belted Kingfisher" loading="lazy"></a>
+          <a data-category="birds" data-label="Belted Kingfisher" href="pics/photos/118A8178_DxO.jpg"><img src="pics/photos/118A8178_DxO.jpg" alt="Belted Kingfisher" loading="lazy"></a>
+          <a data-category="birds" data-label="Barn Swallow" href="pics/photos/118A8177_DxO.jpg"><img src="pics/photos/118A8177_DxO.jpg" alt="Barn Swallow" loading="lazy"></a>
+          <a data-category="other" data-label="118A8044_DxO" href="pics/photos/118A8044_DxO.jpg"><img src="pics/photos/118A8044_DxO.jpg" alt="118A8044_DxO" loading="lazy"></a>
+          <a data-category="other" data-label="118A8011_DxO" href="pics/photos/118A8011_DxO.jpg"><img src="pics/photos/118A8011_DxO.jpg" alt="118A8011_DxO" loading="lazy"></a>
+          <a data-category="other" data-label="118A7966_DxO" href="pics/photos/118A7966_DxO.jpg"><img src="pics/photos/118A7966_DxO.jpg" alt="118A7966_DxO" loading="lazy"></a>
+          <a data-category="birds" data-label="Common Loon" href="pics/photos/118A7947_DxO.jpg"><img src="pics/photos/118A7947_DxO.jpg" alt="Common Loon" loading="lazy"></a>
+          <a data-category="birds" data-label="Common Loon" href="pics/photos/118A7946_DxO.jpg"><img src="pics/photos/118A7946_DxO.jpg" alt="Common Loon" loading="lazy"></a>
+          <a data-category="birds" data-label="Common Loon" href="pics/photos/118A7944_DxO.jpg"><img src="pics/photos/118A7944_DxO.jpg" alt="Common Loon" loading="lazy"></a>
+          <a data-category="places" data-label="Stonebridge Terrill Preserve" href="pics/photos/118A7933_DxO.jpg"><img src="pics/photos/118A7933_DxO.jpg" alt="Stonebridge Terrill Preserve" loading="lazy"></a>
+          <a data-category="birds" data-label="Ruby-Crowned Kinglet" href="pics/photos/118A7925_DxO.jpg"><img src="pics/photos/118A7925_DxO.jpg" alt="Ruby-Crowned Kinglet" loading="lazy"></a>
+          <a data-category="birds" data-label="North Shore Preserve" href="pics/photos/118A7912_DxO.jpg"><img src="pics/photos/118A7912_DxO.jpg" alt="North Shore Preserve" loading="lazy"></a>
+          <a data-category="places" data-label="North Shore Preserve" href="pics/photos/118A7902_DxO.jpg"><img src="pics/photos/118A7902_DxO.jpg" alt="North Shore Preserve" loading="lazy"></a>
+          <a data-category="birds" data-label="Common Loon" href="pics/photos/118A7892_DxO.jpg"><img src="pics/photos/118A7892_DxO.jpg" alt="Common Loon" loading="lazy"></a>
+          <a data-category="birds" data-label="North Shore Preserve" href="pics/photos/118A7814_DxO.jpg"><img src="pics/photos/118A7814_DxO.jpg" alt="North Shore Preserve" loading="lazy"></a>
+          <a data-category="birds" data-label="North Shore Preserve" href="pics/photos/118A7810_DxO.jpg"><img src="pics/photos/118A7810_DxO.jpg" alt="North Shore Preserve" loading="lazy"></a>
+          <a data-category="birds" data-label="North Shore Preserve" href="pics/photos/118A7788_DxO.jpg"><img src="pics/photos/118A7788_DxO.jpg" alt="North Shore Preserve" loading="lazy"></a>
+          <a data-category="birds" data-label="Bald Eagle" href="pics/photos/118A7689_DxO.jpg"><img src="pics/photos/118A7689_DxO.jpg" alt="Bald Eagle" loading="lazy"></a>
+          <a data-category="other" data-label="118A7658_DxO" href="pics/photos/118A7658_DxO.jpg"><img src="pics/photos/118A7658_DxO.jpg" alt="118A7658_DxO" loading="lazy"></a>
+          <a data-category="birds" data-label="Merlin" href="pics/photos/118A7624_DxO.jpg"><img src="pics/photos/118A7624_DxO.jpg" alt="Merlin" loading="lazy"></a>
+          <a data-category="birds" data-label="Merlin" href="pics/photos/118A7616_DxO.jpg"><img src="pics/photos/118A7616_DxO.jpg" alt="Merlin" loading="lazy"></a>
+          <a data-category="birds" data-label="North Shore Preserve" href="pics/photos/118A7599_DxO.jpg"><img src="pics/photos/118A7599_DxO.jpg" alt="North Shore Preserve" loading="lazy"></a>
+          <a data-category="other" data-label="118A7470_DxO" href="pics/photos/118A7470_DxO.jpg"><img src="pics/photos/118A7470_DxO.jpg" alt="118A7470_DxO" loading="lazy"></a>
+          <a data-category="other" data-label="118A7439_DxO" href="pics/photos/118A7439_DxO.jpg"><img src="pics/photos/118A7439_DxO.jpg" alt="118A7439_DxO" loading="lazy"></a>
+          <a data-category="other" data-label="118A7424_DxO" href="pics/photos/118A7424_DxO.jpg"><img src="pics/photos/118A7424_DxO.jpg" alt="118A7424_DxO" loading="lazy"></a>
+          <a data-category="birds" data-label="Anacortes" href="pics/photos/118A7392_DxO.jpg"><img src="pics/photos/118A7392_DxO.jpg" alt="Anacortes" loading="lazy"></a>
+          <a data-category="birds" data-label="Anacortes" href="pics/photos/118A7390_DxO.jpg"><img src="pics/photos/118A7390_DxO.jpg" alt="Anacortes" loading="lazy"></a>
+          <a data-category="other" data-label="118A7379_DxO" href="pics/photos/118A7379_DxO.jpg"><img src="pics/photos/118A7379_DxO.jpg" alt="118A7379_DxO" loading="lazy"></a>
+          <a data-category="places" data-label="Back Yard" href="pics/photos/118A7332_DxO.jpg"><img src="pics/photos/118A7332_DxO.jpg" alt="Back Yard" loading="lazy"></a>
+          <a data-category="birds" data-label="Dark Eyed Junco" href="pics/photos/118A7314_DxO.jpg"><img src="pics/photos/118A7314_DxO.jpg" alt="Dark Eyed Junco" loading="lazy"></a>
+          <a data-category="birds" data-label="Savannah Sparrow" href="pics/photos/118A7310_DxO.jpg"><img src="pics/photos/118A7310_DxO.jpg" alt="Savannah Sparrow" loading="lazy"></a>
+          <a data-category="places" data-label="Union Bay Natural Area" href="pics/photos/118A7309_DxO.jpg"><img src="pics/photos/118A7309_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="birds" data-label="Union Bay Natural Area" href="pics/photos/118A7304_DxO.jpg"><img src="pics/photos/118A7304_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="birds" data-label="Union Bay Natural Area" href="pics/photos/118A7262_DxO.jpg"><img src="pics/photos/118A7262_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="birds" data-label="American Coot" href="pics/photos/118A7247_DxO.jpg"><img src="pics/photos/118A7247_DxO.jpg" alt="American Coot" loading="lazy"></a>
+          <a data-category="birds" data-label="Gadwall" href="pics/photos/118A7240_DxO.jpg"><img src="pics/photos/118A7240_DxO.jpg" alt="Gadwall" loading="lazy"></a>
+          <a data-category="birds" data-label="Northern Shoveler" href="pics/photos/118A7233_DxO.jpg"><img src="pics/photos/118A7233_DxO.jpg" alt="Northern Shoveler" loading="lazy"></a>
+          <a data-category="mammals" data-label="Coyote" href="pics/photos/118A7222_DxO.jpg"><img src="pics/photos/118A7222_DxO.jpg" alt="Coyote" loading="lazy"></a>
+          <a data-category="birds" data-label="Belted Kingfisher" href="pics/photos/118A7162_DxO.jpg"><img src="pics/photos/118A7162_DxO.jpg" alt="Belted Kingfisher" loading="lazy"></a>
+          <a data-category="birds" data-label="Belted Kingfisher" href="pics/photos/118A7158_DxO.jpg"><img src="pics/photos/118A7158_DxO.jpg" alt="Belted Kingfisher" loading="lazy"></a>
+          <a data-category="birds" data-label="Belted Kingfisher" href="pics/photos/118A7142_DxO.jpg"><img src="pics/photos/118A7142_DxO.jpg" alt="Belted Kingfisher" loading="lazy"></a>
+          <a data-category="places" data-label="Union Bay Natural Area" href="pics/photos/118A7140_DxO.jpg"><img src="pics/photos/118A7140_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A7126_DxO.jpg"><img src="pics/photos/118A7126_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="places" data-label="Carkeek Park" href="pics/photos/118A7072_DxO.jpg"><img src="pics/photos/118A7072_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Carkeek Park" href="pics/photos/118A7009_DxO.jpg"><img src="pics/photos/118A7009_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Carkeek Park" href="pics/photos/118A7007_DxO.jpg"><img src="pics/photos/118A7007_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Carkeek Park" href="pics/photos/118A7004_DxO.jpg"><img src="pics/photos/118A7004_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Carkeek Park" href="pics/photos/118A7001_DxO.jpg"><img src="pics/photos/118A7001_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Carkeek Park" href="pics/photos/118A6981_DxO.jpg"><img src="pics/photos/118A6981_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="places" data-label="Carkeek Park" href="pics/photos/118A6943_DxO.jpg"><img src="pics/photos/118A6943_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="places" data-label="Carkeek Park" href="pics/photos/118A6942_DxO.jpg"><img src="pics/photos/118A6942_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="places" data-label="Carkeek Park" href="pics/photos/118A6935_DxO.jpg"><img src="pics/photos/118A6935_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="places" data-label="Carkeek Park" href="pics/photos/118A6934_DxO.jpg"><img src="pics/photos/118A6934_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="places" data-label="Carkeek Park" href="pics/photos/118A6933_DxO.jpg"><img src="pics/photos/118A6933_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="places" data-label="Carkeek Park" href="pics/photos/118A6927_DxO.jpg"><img src="pics/photos/118A6927_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="mammals" data-label="Carkeek Park" href="pics/photos/118A6771_DxO.jpg"><img src="pics/photos/118A6771_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="mammals" data-label="Carkeek Park" href="pics/photos/118A6766_DxO.jpg"><img src="pics/photos/118A6766_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Carkeek Park" href="pics/photos/118A6759_DxO.jpg"><img src="pics/photos/118A6759_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Belted Kingfisher" href="pics/photos/118A6458_DxO.jpg"><img src="pics/photos/118A6458_DxO.jpg" alt="Belted Kingfisher" loading="lazy"></a>
+          <a data-category="birds" data-label="Belted Kingfisher" href="pics/photos/118A6454_DxO.jpg"><img src="pics/photos/118A6454_DxO.jpg" alt="Belted Kingfisher" loading="lazy"></a>
+          <a data-category="birds" data-label="Carkeek Park" href="pics/photos/118A6445_DxO.jpg"><img src="pics/photos/118A6445_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Carkeek Park" href="pics/photos/118A6418_DxO.jpg"><img src="pics/photos/118A6418_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Carkeek Park" href="pics/photos/118A6396_DxO.jpg"><img src="pics/photos/118A6396_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Carkeek Park" href="pics/photos/118A6372_DxO.jpg"><img src="pics/photos/118A6372_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="places" data-label="Carkeek Park" href="pics/photos/118A6349_DxO.jpg"><img src="pics/photos/118A6349_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Carkeek Park" href="pics/photos/118A6330_DxO.jpg"><img src="pics/photos/118A6330_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Carkeek Park" href="pics/photos/118A6317_DxO.jpg"><img src="pics/photos/118A6317_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Canada Goose" href="pics/photos/118A6289_DxO.jpg"><img src="pics/photos/118A6289_DxO.jpg" alt="Canada Goose" loading="lazy"></a>
+          <a data-category="places" data-label="Carkeek Park" href="pics/photos/118A6254_DxO.jpg"><img src="pics/photos/118A6254_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="places" data-label="Carkeek Park" href="pics/photos/118A6246_DxO.jpg"><img src="pics/photos/118A6246_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="places" data-label="Carkeek Park" href="pics/photos/118A6232_DxO.jpg"><img src="pics/photos/118A6232_DxO.jpg" alt="Carkeek Park" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A6093_DxO.jpg"><img src="pics/photos/118A6093_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A6090_DxO.jpg"><img src="pics/photos/118A6090_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A6089_DxO.jpg"><img src="pics/photos/118A6089_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A6088_DxO.jpg"><img src="pics/photos/118A6088_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A6083_DxO.jpg"><img src="pics/photos/118A6083_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A6047_DxO.jpg"><img src="pics/photos/118A6047_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A6045_DxO.jpg"><img src="pics/photos/118A6045_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="other" data-label="118A6007_DxO" href="pics/photos/118A6007_DxO.jpg"><img src="pics/photos/118A6007_DxO.jpg" alt="118A6007_DxO" loading="lazy"></a>
+          <a data-category="birds" data-label="Black-Capped Chickadee" href="pics/photos/118A5931_DxO.jpg"><img src="pics/photos/118A5931_DxO.jpg" alt="Black-Capped Chickadee" loading="lazy"></a>
+          <a data-category="birds" data-label="Black-Capped Chickadee" href="pics/photos/118A5928_DxO.jpg"><img src="pics/photos/118A5928_DxO.jpg" alt="Black-Capped Chickadee" loading="lazy"></a>
+          <a data-category="birds" data-label="Red-Winged Blackbird" href="pics/photos/118A5908_DxO.jpg"><img src="pics/photos/118A5908_DxO.jpg" alt="Red-Winged Blackbird" loading="lazy"></a>
+          <a data-category="mammals" data-label="Eastern Cottontail" href="pics/photos/118A5877_DxO.jpg"><img src="pics/photos/118A5877_DxO.jpg" alt="Eastern Cottontail" loading="lazy"></a>
+          <a data-category="birds" data-label="Black-Capped Chickadee" href="pics/photos/118A5859_DxO.jpg"><img src="pics/photos/118A5859_DxO.jpg" alt="Black-Capped Chickadee" loading="lazy"></a>
+          <a data-category="places" data-label="Union Bay Natural Area" href="pics/photos/118A5814_DxO.jpg"><img src="pics/photos/118A5814_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="places" data-label="Union Bay Natural Area" href="pics/photos/118A5808_DxO.jpg"><img src="pics/photos/118A5808_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="birds" data-label="Green Heron" href="pics/photos/118A5659_DxO.jpg"><img src="pics/photos/118A5659_DxO.jpg" alt="Green Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="American Coot" href="pics/photos/118A5617_DxO.jpg"><img src="pics/photos/118A5617_DxO.jpg" alt="American Coot" loading="lazy"></a>
+          <a data-category="places" data-label="Union Bay Natural Area" href="pics/photos/118A5590_DxO.jpg"><img src="pics/photos/118A5590_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="birds" data-label="Union Bay Natural Area" href="pics/photos/118A5537_DxO.jpg"><img src="pics/photos/118A5537_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="birds" data-label="Union Bay Natural Area" href="pics/photos/118A5444_DxO.jpg"><img src="pics/photos/118A5444_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="birds" data-label="Gadwall" href="pics/photos/118A5338_DxO.jpg"><img src="pics/photos/118A5338_DxO.jpg" alt="Gadwall" loading="lazy"></a>
+          <a data-category="places" data-label="Union Bay Natural Area" href="pics/photos/118A5302_DxO.jpg"><img src="pics/photos/118A5302_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="birds" data-label="Gadwall" href="pics/photos/118A5287_DxO.jpg"><img src="pics/photos/118A5287_DxO.jpg" alt="Gadwall" loading="lazy"></a>
+          <a data-category="places" data-label="Union Bay Natural Area" href="pics/photos/118A5282_DxO.jpg"><img src="pics/photos/118A5282_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="places" data-label="Union Bay Natural Area" href="pics/photos/118A5279_DxO.jpg"><img src="pics/photos/118A5279_DxO.jpg" alt="Union Bay Natural Area" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A5230_DxO.jpg"><img src="pics/photos/118A5230_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Hooded Merganser" href="pics/photos/118A5221_DxO.jpg"><img src="pics/photos/118A5221_DxO.jpg" alt="Hooded Merganser" loading="lazy"></a>
+          <a data-category="birds" data-label="Hooded Merganser" href="pics/photos/118A5220_DxO.jpg"><img src="pics/photos/118A5220_DxO.jpg" alt="Hooded Merganser" loading="lazy"></a>
+          <a data-category="birds" data-label="Hooded Merganser" href="pics/photos/118A5212_DxO.jpg"><img src="pics/photos/118A5212_DxO.jpg" alt="Hooded Merganser" loading="lazy"></a>
+          <a data-category="birds" data-label="Hooded Merganser" href="pics/photos/118A5208_DxO-1.jpg"><img src="pics/photos/118A5208_DxO-1.jpg" alt="Hooded Merganser" loading="lazy"></a>
+          <a data-category="birds" data-label="Hooded Merganser" href="pics/photos/118A5208_DxO.jpg"><img src="pics/photos/118A5208_DxO.jpg" alt="Hooded Merganser" loading="lazy"></a>
+          <a data-category="birds" data-label="Hooded Merganser" href="pics/photos/118A5206_DxO.jpg"><img src="pics/photos/118A5206_DxO.jpg" alt="Hooded Merganser" loading="lazy"></a>
+          <a data-category="birds" data-label="Hooded Merganser" href="pics/photos/118A5205_DxO.jpg"><img src="pics/photos/118A5205_DxO.jpg" alt="Hooded Merganser" loading="lazy"></a>
+          <a data-category="other" data-label="118A5195_DxO" href="pics/photos/118A5195_DxO.jpg"><img src="pics/photos/118A5195_DxO.jpg" alt="118A5195_DxO" loading="lazy"></a>
+          <a data-category="other" data-label="118A5171_DxO" href="pics/photos/118A5171_DxO.jpg"><img src="pics/photos/118A5171_DxO.jpg" alt="118A5171_DxO" loading="lazy"></a>
+          <a data-category="mammals" data-label="Deer" href="pics/photos/118A5163_DxO.jpg"><img src="pics/photos/118A5163_DxO.jpg" alt="Deer" loading="lazy"></a>
+          <a data-category="mammals" data-label="Deer" href="pics/photos/118A5157_DxO.jpg"><img src="pics/photos/118A5157_DxO.jpg" alt="Deer" loading="lazy"></a>
+          <a data-category="other" data-label="118A5152_DxO" href="pics/photos/118A5152_DxO.jpg"><img src="pics/photos/118A5152_DxO.jpg" alt="118A5152_DxO" loading="lazy"></a>
+          <a data-category="mammals" data-label="Deer" href="pics/photos/118A5147_DxO.jpg"><img src="pics/photos/118A5147_DxO.jpg" alt="Deer" loading="lazy"></a>
+          <a data-category="other" data-label="118A5115_DxO" href="pics/photos/118A5115_DxO.jpg"><img src="pics/photos/118A5115_DxO.jpg" alt="118A5115_DxO" loading="lazy"></a>
+          <a data-category="mammals" data-label="Eastern Cottontail" href="pics/photos/118A5102_DxO.jpg"><img src="pics/photos/118A5102_DxO.jpg" alt="Eastern Cottontail" loading="lazy"></a>
+          <a data-category="birds" data-label="American Crow" href="pics/photos/118A4760_DxO.jpg"><img src="pics/photos/118A4760_DxO.jpg" alt="American Crow" loading="lazy"></a>
+          <a data-category="birds" data-label="American Crow" href="pics/photos/118A4759_DxO.jpg"><img src="pics/photos/118A4759_DxO.jpg" alt="American Crow" loading="lazy"></a>
+          <a data-category="birds" data-label="Bushtit" href="pics/photos/118A4746_DxO.jpg"><img src="pics/photos/118A4746_DxO.jpg" alt="Bushtit" loading="lazy"></a>
+          <a data-category="birds" data-label="Coopers Hawk" href="pics/photos/118A4711_DxO.jpg"><img src="pics/photos/118A4711_DxO.jpg" alt="Coopers Hawk" loading="lazy"></a>
+          <a data-category="birds" data-label="Black-Capped Chickadee" href="pics/photos/118A4677_DxO.jpg"><img src="pics/photos/118A4677_DxO.jpg" alt="Black-Capped Chickadee" loading="lazy"></a>
+          <a data-category="birds" data-label="Black-Capped Chickadee" href="pics/photos/118A4676_DxO.jpg"><img src="pics/photos/118A4676_DxO.jpg" alt="Black-Capped Chickadee" loading="lazy"></a>
+          <a data-category="birds" data-label="Savannah Sparrow" href="pics/photos/118A4652_DxO.jpg"><img src="pics/photos/118A4652_DxO.jpg" alt="Savannah Sparrow" loading="lazy"></a>
+          <a data-category="birds" data-label="Annas Hummingbird" href="pics/photos/118A4645_DxO.jpg"><img src="pics/photos/118A4645_DxO.jpg" alt="Annas Hummingbird" loading="lazy"></a>
+          <a data-category="birds" data-label="American Goldfinch" href="pics/photos/118A4631_DxO.jpg"><img src="pics/photos/118A4631_DxO.jpg" alt="American Goldfinch" loading="lazy"></a>
+          <a data-category="birds" data-label="Song Sparrow" href="pics/photos/118A4578_DxO.jpg"><img src="pics/photos/118A4578_DxO.jpg" alt="Song Sparrow" loading="lazy"></a>
+          <a data-category="birds" data-label="Back Yard" href="pics/photos/118A4522_DxO.jpg"><img src="pics/photos/118A4522_DxO.jpg" alt="Back Yard" loading="lazy"></a>
+          <a data-category="birds" data-label="Annas Hummingbird" href="pics/photos/118A4296_DxO.jpg"><img src="pics/photos/118A4296_DxO.jpg" alt="Annas Hummingbird" loading="lazy"></a>
+          <a data-category="birds" data-label="Annas Hummingbird" href="pics/photos/118A4288_DxO.jpg"><img src="pics/photos/118A4288_DxO.jpg" alt="Annas Hummingbird" loading="lazy"></a>
+          <a data-category="birds" data-label="Annas Hummingbird" href="pics/photos/118A4262_DxO.jpg"><img src="pics/photos/118A4262_DxO.jpg" alt="Annas Hummingbird" loading="lazy"></a>
+          <a data-category="birds" data-label="Back Yard" href="pics/photos/118A4142_DxO.jpg"><img src="pics/photos/118A4142_DxO.jpg" alt="Back Yard" loading="lazy"></a>
+          <a data-category="birds" data-label="Back Yard" href="pics/photos/118A4076_DxO.jpg"><img src="pics/photos/118A4076_DxO.jpg" alt="Back Yard" loading="lazy"></a>
+          <a data-category="birds" data-label="Annas Hummingbird" href="pics/photos/118A4048_DxO-1.jpg"><img src="pics/photos/118A4048_DxO-1.jpg" alt="Annas Hummingbird" loading="lazy"></a>
+          <a data-category="birds" data-label="Annas Hummingbird" href="pics/photos/118A4048_DxO.jpg"><img src="pics/photos/118A4048_DxO.jpg" alt="Annas Hummingbird" loading="lazy"></a>
+          <a data-category="other" data-label="Back Yard" href="pics/photos/118A3957_DxO.jpg"><img src="pics/photos/118A3957_DxO.jpg" alt="Back Yard" loading="lazy"></a>
+          <a data-category="birds" data-label="Back Yard" href="pics/photos/118A3546_DxO.jpg"><img src="pics/photos/118A3546_DxO.jpg" alt="Back Yard" loading="lazy"></a>
+          <a data-category="other" data-label="Back Yard" href="pics/photos/118A3399_DxO.jpg"><img src="pics/photos/118A3399_DxO.jpg" alt="Back Yard" loading="lazy"></a>
+          <a data-category="other" data-label="Back Yard" href="pics/photos/118A3396_DxO.jpg"><img src="pics/photos/118A3396_DxO.jpg" alt="Back Yard" loading="lazy"></a>
+          <a data-category="other" data-label="Back Yard" href="pics/photos/118A2983_DxO.jpg"><img src="pics/photos/118A2983_DxO.jpg" alt="Back Yard" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A2484_DxO.jpg"><img src="pics/photos/118A2484_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="other" data-label="Least Sandpiper" href="pics/photos/118A2431_DxO.jpg"><img src="pics/photos/118A2431_DxO.jpg" alt="Least Sandpiper" loading="lazy"></a>
+          <a data-category="other" data-label="Least Sandpiper" href="pics/photos/118A2270_DxO.jpg"><img src="pics/photos/118A2270_DxO.jpg" alt="Least Sandpiper" loading="lazy"></a>
+          <a data-category="other" data-label="Green Heron" href="pics/photos/118A1919_DxO.jpg"><img src="pics/photos/118A1919_DxO.jpg" alt="Green Heron" loading="lazy"></a>
+          <a data-category="other" data-label="Green Heron" href="pics/photos/118A1870_DxO.jpg"><img src="pics/photos/118A1870_DxO.jpg" alt="Green Heron" loading="lazy"></a>
+          <a data-category="other" data-label="Green Heron" href="pics/photos/118A1810_DxO.jpg"><img src="pics/photos/118A1810_DxO.jpg" alt="Green Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A1713_DxO.jpg"><img src="pics/photos/118A1713_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Blue Heron" href="pics/photos/118A1707_DxO.jpg"><img src="pics/photos/118A1707_DxO.jpg" alt="Great Blue Heron" loading="lazy"></a>
+          <a data-category="birds" data-label="Annas Hummingbird" href="pics/photos/118A0350_DxO.jpg"><img src="pics/photos/118A0350_DxO.jpg" alt="Annas Hummingbird" loading="lazy"></a>
+          <a data-category="birds" data-label="Annas Hummingbird" href="pics/photos/118A0348_DxO.jpg"><img src="pics/photos/118A0348_DxO.jpg" alt="Annas Hummingbird" loading="lazy"></a>
+          <a data-category="other" data-label="Back Yard" href="pics/photos/118A9986_DxO.jpg"><img src="pics/photos/118A9986_DxO.jpg" alt="Back Yard" loading="lazy"></a>
+          <a data-category="birds" data-label="Back Yard" href="pics/photos/118A9807_DxO.jpg"><img src="pics/photos/118A9807_DxO.jpg" alt="Back Yard" loading="lazy"></a>
+          <a data-category="birds" data-label="American Robin" href="pics/photos/118A9400_DxO.jpg"><img src="pics/photos/118A9400_DxO.jpg" alt="American Robin" loading="lazy"></a>
+          <a data-category="mammals" data-label="Eastern Cottontail" href="pics/photos/4M6A9264_DxO.jpg"><img src="pics/photos/4M6A9264_DxO.jpg" alt="Eastern Cottontail" loading="lazy"></a>
+          <a data-category="mammals" data-label="Eastern Cottontail" href="pics/photos/4M6A9246_DxO.jpg"><img src="pics/photos/4M6A9246_DxO.jpg" alt="Eastern Cottontail" loading="lazy"></a>
+          <a data-category="birds" data-label="Back Yard" href="pics/photos/4M6A9177_DxO.jpg"><img src="pics/photos/4M6A9177_DxO.jpg" alt="Back Yard" loading="lazy"></a>
+          <a data-category="other" data-label="Back Yard" href="pics/photos/4M6A6647_DxO.jpg"><img src="pics/photos/4M6A6647_DxO.jpg" alt="Back Yard" loading="lazy"></a>
+          <a data-category="birds" data-label="Savannah Sparrow" href="pics/photos/4M6A6136_DxO.jpg"><img src="pics/photos/4M6A6136_DxO.jpg" alt="Savannah Sparrow" loading="lazy"></a>
+          <a data-category="birds" data-label="Common Yellowthroat" href="pics/photos/4M6A6122_DxO.jpg"><img src="pics/photos/4M6A6122_DxO.jpg" alt="Common Yellowthroat" loading="lazy"></a>
+          <a data-category="birds" data-label="Downy Woodpecker" href="pics/photos/4M6A5968_DxO.jpg"><img src="pics/photos/4M6A5968_DxO.jpg" alt="Downy Woodpecker" loading="lazy"></a>
+          <a data-category="other" data-label="Brown-Headed Cowbird" href="pics/photos/4M6A5931_DxO.jpg"><img src="pics/photos/4M6A5931_DxO.jpg" alt="Brown-Headed Cowbird" loading="lazy"></a>
+          <a data-category="other" data-label="Color Contrast" href="pics/photos/4M6A5347_DxO.jpg"><img src="pics/photos/4M6A5347_DxO.jpg" alt="Color Contrast" loading="lazy"></a>
+          <a data-category="other" data-label="Color Contrast" href="pics/photos/4M6A5337_DxO.jpg"><img src="pics/photos/4M6A5337_DxO.jpg" alt="Color Contrast" loading="lazy"></a>
+          <a data-category="birds" data-label="Tree Swallow" href="pics/photos/4M6A5114_DxO.jpg"><img src="pics/photos/4M6A5114_DxO.jpg" alt="Tree Swallow" loading="lazy"></a>
+          <a data-category="birds" data-label="Tree Swallow" href="pics/photos/4M6A5111_DxO.jpg"><img src="pics/photos/4M6A5111_DxO.jpg" alt="Tree Swallow" loading="lazy"></a>
+          <a data-category="birds" data-label="Tree Swallow" href="pics/photos/4M6A5102_DxO.jpg"><img src="pics/photos/4M6A5102_DxO.jpg" alt="Tree Swallow" loading="lazy"></a>
+          <a data-category="birds" data-label="Tree Swallow" href="pics/photos/4M6A5096_DxO.jpg"><img src="pics/photos/4M6A5096_DxO.jpg" alt="Tree Swallow" loading="lazy"></a>
+          <a data-category="birds" data-label="Purple Martin" href="pics/photos/4M6A4996_DxO.jpg"><img src="pics/photos/4M6A4996_DxO.jpg" alt="Purple Martin" loading="lazy"></a>
+          <a data-category="birds" data-label="Purple Martin" href="pics/photos/4M6A4995_DxO.jpg"><img src="pics/photos/4M6A4995_DxO.jpg" alt="Purple Martin" loading="lazy"></a>
+          <a data-category="birds" data-label="Purple Martin" href="pics/photos/4M6A4992_DxO.jpg"><img src="pics/photos/4M6A4992_DxO.jpg" alt="Purple Martin" loading="lazy"></a>
+          <a data-category="birds" data-label="Purple Martin" href="pics/photos/4M6A4924_DxO.jpg"><img src="pics/photos/4M6A4924_DxO.jpg" alt="Purple Martin" loading="lazy"></a>
+          <a data-category="birds" data-label="Red-Breasted Nuthatch" href="pics/photos/IMG_3960_DxO.jpg"><img src="pics/photos/IMG_3960_DxO.jpg" alt="Red-Breasted Nuthatch" loading="lazy"></a>
+          <a data-category="birds" data-label="Bald Eagle" href="pics/photos/IMG_3801_DxO.jpg"><img src="pics/photos/IMG_3801_DxO.jpg" alt="Bald Eagle" loading="lazy"></a>
+          <a data-category="birds" data-label="Bald Eagle" href="pics/photos/IMG_3779_DxO.jpg"><img src="pics/photos/IMG_3779_DxO.jpg" alt="Bald Eagle" loading="lazy"></a>
+          <a data-category="birds" data-label="Song Sparrow" href="pics/photos/IMG_3677_DxO.jpg"><img src="pics/photos/IMG_3677_DxO.jpg" alt="Song Sparrow" loading="lazy"></a>
+          <a data-category="birds" data-label="Marsh Wren" href="pics/photos/IMG_3648_DxO.jpg"><img src="pics/photos/IMG_3648_DxO.jpg" alt="Marsh Wren" loading="lazy"></a>
+          <a data-category="birds" data-label="Great Egret" href="pics/photos/IMG_3625_DxO.jpg"><img src="pics/photos/IMG_3625_DxO.jpg" alt="Great Egret" loading="lazy"></a>
+          <a data-category="mammals" data-label="Eastern Cottontail" href="pics/photos/IMG_3507_DxO.jpg"><img src="pics/photos/IMG_3507_DxO.jpg" alt="Eastern Cottontail" loading="lazy"></a>
+          <a data-category="other" data-label="Caspian Tern" href="pics/photos/20260710_8167_DxO.jpg"><img src="pics/photos/20260710_8167_DxO.jpg" alt="Caspian Tern" loading="lazy"></a>
+          <a data-category="birds" data-label="Rufous Hummingbird" href="pics/photos/20260703_9553_DxO.jpg"><img src="pics/photos/20260703_9553_DxO.jpg" alt="Rufous Hummingbird" loading="lazy"></a>
+          <a data-category="birds" data-label="Rufous Hummingbird" href="pics/photos/20260703_1828_DxO.jpg"><img src="pics/photos/20260703_1828_DxO.jpg" alt="Rufous Hummingbird" loading="lazy"></a>
+          <a data-category="mammals" data-label="Douglas Squirrel" href="pics/photos/20260703_1808_DxO.jpg"><img src="pics/photos/20260703_1808_DxO.jpg" alt="Douglas Squirrel" loading="lazy"></a>
+          <a data-category="mammals" data-label="Douglas Squirrel" href="pics/photos/20260703_1806_DxO.jpg"><img src="pics/photos/20260703_1806_DxO.jpg" alt="Douglas Squirrel" loading="lazy"></a>
+          <a data-category="mammals" data-label="Douglas Squirrel" href="pics/photos/20260703_1803_DxO.jpg"><img src="pics/photos/20260703_1803_DxO.jpg" alt="Douglas Squirrel" loading="lazy"></a>
+          <a data-category="mammals" data-label="Douglas Squirrel" href="pics/photos/20260703_1791_DxO.jpg"><img src="pics/photos/20260703_1791_DxO.jpg" alt="Douglas Squirrel" loading="lazy"></a>
+        </div>
       </div>
     </main>
     <div class="lightbox" aria-hidden="true" id="lightbox">
       <button aria-label="Close photo" class="lightbox-close" type="button">&times;</button>
       <button aria-label="Previous photo" class="lightbox-previous" type="button">&larr;</button>
-      <img alt="Photograph by Brandon Benton" id="lightbox-image" tabindex="0">
+      <figure class="lightbox-figure">
+        <img alt="" id="lightbox-image" tabindex="0">
+        <figcaption><span id="lightbox-label"></span><span class="lightbox-count" id="lightbox-count"></span></figcaption>
+      </figure>
       <button aria-label="Next photo" class="lightbox-next" type="button">&rarr;</button>
     </div>
     <script>
       const galleryLinks = Array.from(document.querySelectorAll('.photo-gallery a'));
+      const categoryButtons = Array.from(document.querySelectorAll('.category-nav button'));
       const lightbox = document.getElementById('lightbox');
       const lightboxImage = document.getElementById('lightbox-image');
+      const lightboxLabel = document.getElementById('lightbox-label');
+      const lightboxCount = document.getElementById('lightbox-count');
+      let visibleGalleryLinks = galleryLinks;
       let activePhoto = 0;
 
       function showPhoto(index) {
-        activePhoto = (index + galleryLinks.length) % galleryLinks.length;
+        activePhoto = (index + visibleGalleryLinks.length) % visibleGalleryLinks.length;
+        const photo = visibleGalleryLinks[activePhoto];
         lightbox.classList.remove('is-zoomed');
-        lightboxImage.src = galleryLinks[activePhoto].href;
+        lightboxImage.src = photo.href;
+        lightboxImage.alt = photo.dataset.label;
+        lightboxLabel.textContent = photo.dataset.label;
+        lightboxCount.textContent = (activePhoto + 1) + ' of ' + visibleGalleryLinks.length;
       }
 
       function openLightbox(index) {
@@ -274,10 +314,31 @@
         lightbox.setAttribute('aria-hidden', 'true');
       }
 
-      galleryLinks.forEach((link, index) => {
+      function selectCategory(category) {
+        visibleGalleryLinks = galleryLinks.filter((link) => category === 'all' || link.dataset.category === category);
+        galleryLinks.forEach((link) => {
+          link.hidden = !visibleGalleryLinks.includes(link);
+        });
+        categoryButtons.forEach((button) => {
+          const isActive = button.dataset.category === category;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', isActive.toString());
+        });
+      }
+
+      galleryLinks.forEach((link) => {
         link.addEventListener('click', (event) => {
           event.preventDefault();
-          openLightbox(index);
+          openLightbox(visibleGalleryLinks.indexOf(link));
+        });
+        const image = link.querySelector('img');
+        if (image.complete) image.classList.add('is-loaded');
+        image.addEventListener('load', () => image.classList.add('is-loaded'));
+      });
+
+      categoryButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          selectCategory(button.dataset.category);
         });
       });
 
