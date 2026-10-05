@@ -90,7 +90,8 @@ function Get-PhotoLabel {
       'anacortes', 'back yard', 'carkeek park', 'crescent beach', 'front yard',
       'juanita bay park', 'north shore preserve', 'riverside business park',
       'smith island habitat & wildlife viewing area', 'union bay natural area',
-      'warren g magnuson park', 'washington park arboretum', 'yesler swamp'
+      'warren g magnuson park', 'washington park arboretum', 'yesler swamp',
+      'skagit wildlife area (fir island farm unit)'
     )
   }
 
