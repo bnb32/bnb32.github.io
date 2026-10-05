@@ -3,6 +3,14 @@ $ErrorActionPreference = 'Stop'
 $photoDirectory = Join-Path $PSScriptRoot 'pics/photos'
 $outputFile = Join-Path $PSScriptRoot 'photography.html'
 
+$placeKeywords = @(
+  'anacortes', 'back yard', 'carkeek park', 'crescent beach', 'front yard',
+  'juanita bay park', 'north shore preserve', 'riverside business park',
+  'skagit wildlife area (fir island farm unit)',
+  'smith island habitat & wildlife viewing area', 'union bay natural area',
+  'warren g magnuson park', 'washington park arboretum', 'yesler swamp'
+)
+
 if (-not (Test-Path -Path $photoDirectory -PathType Container)) {
     throw "Photo directory not found: $photoDirectory"
 }
@@ -86,13 +94,7 @@ function Get-PhotoLabel {
   )
 
   if ($Category -in @('Birds', 'Mammals', 'Reptiles & Amphibians', 'Invertebrates')) {
-    $excludedKeywords += @(
-      'anacortes', 'back yard', 'carkeek park', 'crescent beach', 'front yard',
-      'juanita bay park', 'north shore preserve', 'riverside business park',
-      'smith island habitat & wildlife viewing area', 'union bay natural area',
-      'warren g magnuson park', 'washington park arboretum', 'yesler swamp',
-      'skagit wildlife area (fir island farm unit)'
-    )
+    $excludedKeywords += $placeKeywords
   }
 
   $label = $Keywords |
@@ -125,12 +127,8 @@ $photos = Get-ChildItem -Path $photoDirectory -File |
     }
 
 $nonSubjectKeywords = @(
-  'animal', 'bird', 'place', 'changed', 'cr3', 'environment', 'exported',
-  'anacortes', 'back yard', 'carkeek park', 'crescent beach', 'front yard',
-  'juanita bay park', 'north shore preserve', 'riverside business park',
-  'smith island habitat & wildlife viewing area', 'union bay natural area',
-  'warren g magnuson park', 'washington park arboretum', 'yesler swamp'
-)
+  'animal', 'bird', 'place', 'changed', 'cr3', 'environment', 'exported'
+) + $placeKeywords
 $birdKeywords = $photos |
   Where-Object { $_.Keywords -contains 'bird' } |
   ForEach-Object { $_.Keywords } |
