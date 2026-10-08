@@ -167,11 +167,28 @@ foreach ($category in $categoryOrder) {
   }
 }
 
+$speciesOptions = $photos |
+  Where-Object {
+    $_.Category -eq 'Birds' -and
+    $_.Label -ne [System.IO.Path]::GetFileNameWithoutExtension($_.File.Name)
+  } |
+  Group-Object -Property Label |
+  Sort-Object -Property Name |
+  ForEach-Object {
+    $encodedSpecies = [System.Net.WebUtility]::HtmlEncode($_.Name)
+    $photoCountLabel = if ($_.Count -eq 1) { 'photo' } else { 'photos' }
+    "            <option value=`"$encodedSpecies`">$($_.Count) $photoCountLabel</option>"
+  }
+
 $galleryItems = foreach ($photo in $photos) {
     $relativePath = "pics/photos/$($photo.File.Name)"
     $categorySlug = $photo.Category.ToLowerInvariant() -replace '[^a-z0-9]+', '-'
     $encodedLabel = [System.Net.WebUtility]::HtmlEncode($photo.Label)
-    "          <a data-category=`"$categorySlug`" data-label=`"$encodedLabel`" href=`"$relativePath`"><img src=`"$relativePath`" alt=`"$encodedLabel`" loading=`"lazy`"></a>"
+    $species = if (
+      $photo.Category -eq 'Birds' -and
+      $photo.Label -ne [System.IO.Path]::GetFileNameWithoutExtension($photo.File.Name)
+    ) { $encodedLabel } else { '' }
+    "          <a data-category=`"$categorySlug`" data-label=`"$encodedLabel`" data-species=`"$species`" href=`"$relativePath`"><img src=`"$relativePath`" alt=`"$encodedLabel`" loading=`"lazy`"></a>"
 }
 
 $document = @"
@@ -191,11 +208,18 @@ $document = @"
       #photography-content { margin: 34px auto; max-width: 1400px; padding: 0 24px; }
       #photography-content h1 { position: static; margin: 0 0 22px; padding: 0; }
       .gallery-layout { background: #080808; color: #f5f5f2; display: grid; grid-template-columns: 190px minmax(0, 1fr); min-height: 70vh; padding: 28px; }
+      .gallery-controls { padding-right: 28px; }
       .category-nav { align-content: start; display: grid; gap: 3px; padding-right: 28px; }
       .category-nav button { background: transparent; border: 0; color: #aaa; cursor: pointer; font: 16px/1.3 'Titillium Web', sans-serif; padding: 7px 0; text-align: left; }
       .category-nav button:hover, .category-nav button:focus-visible, .category-nav button.is-active { color: white; }
       .category-nav button.is-active { font-weight: 700; }
       .category-nav span { color: #666; float: right; font-size: 13px; }
+      .species-filter { border-top: 1px solid #292929; margin-top: 18px; padding-top: 18px; }
+      .species-filter[hidden] { display: none; }
+      .species-filter label { color: #aaa; display: block; font: 13px/1.3 'Titillium Web', sans-serif; margin-bottom: 6px; }
+      .species-filter input { background: #171717; border: 1px solid #3a3a3a; box-sizing: border-box; color: white; font: 15px/1.3 'Titillium Web', sans-serif; padding: 8px; width: 100%; }
+      .species-filter input:focus { border-color: #aaa; outline: 1px solid #aaa; }
+      .gallery-status { color: #777; font: 13px/1.3 'Titillium Web', sans-serif; margin: 8px 0 0; }
       .photo-gallery { display: grid; gap: 5px; grid-auto-flow: dense; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
       .photo-gallery a { background: #171717; display: block; aspect-ratio: 4 / 3; overflow: hidden; }
       .photo-gallery a[hidden] { display: none; }
@@ -216,10 +240,13 @@ $document = @"
       .lightbox-next { right: 16px; top: 50%; transform: translateY(-50%); }
       @media (max-width: 700px) {
         #photography-content { padding: 0 12px; }
-        .gallery-layout { grid-template-columns: 1fr; padding: 16px; }
-        .category-nav { display: flex; gap: 18px; overflow-x: auto; padding: 0 0 16px; white-space: nowrap; }
+        .gallery-layout { grid-template-columns: minmax(0, 1fr); padding: 16px; }
+        .gallery-controls { min-width: 0; padding: 0 0 16px; }
+        .category-nav { display: flex; gap: 18px; overflow-x: auto; padding: 0; white-space: nowrap; }
         .category-nav button { flex: 0 0 auto; }
         .category-nav span { float: none; margin-left: 4px; }
+        .species-filter { margin-top: 14px; padding-top: 14px; }
+        .species-filter input { max-width: 320px; }
         .photo-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       }
     </style>
@@ -238,9 +265,19 @@ $document = @"
     <main id="photography-content">
       <h1>Photography</h1>
       <div class="gallery-layout">
-        <nav aria-label="Photo categories" class="category-nav">
+        <aside class="gallery-controls">
+          <nav aria-label="Photo categories" class="category-nav">
 $($categoryButtons -join "`r`n")
-        </nav>
+          </nav>
+          <div class="species-filter" hidden id="species-filter">
+            <label for="species-search">Species</label>
+            <input autocomplete="off" id="species-search" list="species-list" placeholder="All birds" type="search">
+            <datalist id="species-list">
+$($speciesOptions -join "`r`n")
+            </datalist>
+            <p aria-live="polite" class="gallery-status" id="gallery-status">$($photos.Count) photos</p>
+          </div>
+        </aside>
         <div class="photo-gallery">
 $($galleryItems -join "`r`n")
         </div>
@@ -258,12 +295,16 @@ $($galleryItems -join "`r`n")
     <script>
       const galleryLinks = Array.from(document.querySelectorAll('.photo-gallery a'));
       const categoryButtons = Array.from(document.querySelectorAll('.category-nav button'));
+      const speciesFilter = document.getElementById('species-filter');
+      const speciesSearch = document.getElementById('species-search');
+      const galleryStatus = document.getElementById('gallery-status');
       const lightbox = document.getElementById('lightbox');
       const lightboxImage = document.getElementById('lightbox-image');
       const lightboxLabel = document.getElementById('lightbox-label');
       const lightboxCount = document.getElementById('lightbox-count');
       let visibleGalleryLinks = galleryLinks;
       let activePhoto = 0;
+      let activeCategory = 'all';
 
       function showPhoto(index) {
         activePhoto = (index + visibleGalleryLinks.length) % visibleGalleryLinks.length;
@@ -286,16 +327,30 @@ $($galleryItems -join "`r`n")
         lightbox.setAttribute('aria-hidden', 'true');
       }
 
-      function selectCategory(category) {
-        visibleGalleryLinks = galleryLinks.filter((link) => category === 'all' || link.dataset.category === category);
+      function filterGallery() {
+        const speciesQuery = activeCategory === 'birds' ? speciesSearch.value.trim().toLowerCase() : '';
+        visibleGalleryLinks = galleryLinks.filter((link) => {
+          const matchesCategory = activeCategory === 'all' || link.dataset.category === activeCategory;
+          const matchesSpecies = !speciesQuery || link.dataset.species.toLowerCase().includes(speciesQuery);
+          return matchesCategory && matchesSpecies;
+        });
         galleryLinks.forEach((link) => {
           link.hidden = !visibleGalleryLinks.includes(link);
         });
+        galleryStatus.textContent = visibleGalleryLinks.length + (visibleGalleryLinks.length === 1 ? ' photo' : ' photos');
+        closeLightbox();
+      }
+
+      function selectCategory(category) {
+        activeCategory = category;
+        speciesFilter.hidden = category !== 'birds';
+        if (category !== 'birds') speciesSearch.value = '';
         categoryButtons.forEach((button) => {
           const isActive = button.dataset.category === category;
           button.classList.toggle('is-active', isActive);
           button.setAttribute('aria-pressed', isActive.toString());
         });
+        filterGallery();
       }
 
       galleryLinks.forEach((link) => {
@@ -313,6 +368,7 @@ $($galleryItems -join "`r`n")
           selectCategory(button.dataset.category);
         });
       });
+      speciesSearch.addEventListener('input', filterGallery);
 
       document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
       document.querySelector('.lightbox-previous').addEventListener('click', () => showPhoto(activePhoto - 1));
