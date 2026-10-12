@@ -7,8 +7,10 @@ $placeKeywords = @(
   'anacortes', 'back yard', 'carkeek park', 'crescent beach', 'front yard',
   'juanita bay park', 'north shore preserve', 'riverside business park',
   'skagit wildlife area (fir island farm unit)',
+  'skagit wildlife area (wiley slough farm unit)',
   'smith island habitat & wildlife viewing area', 'union bay natural area',
-  'warren g magnuson park', 'washington park arboretum', 'yesler swamp'
+  'warren g magnuson park', 'washington park arboretum', 'yesler swamp',
+  'craft island'
 )
 
 if (-not (Test-Path -Path $photoDirectory -PathType Container)) {
