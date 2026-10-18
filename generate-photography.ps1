@@ -10,7 +10,7 @@ $placeKeywords = @(
   'skagit wildlife area (wiley slough farm unit)',
   'smith island habitat & wildlife viewing area', 'union bay natural area',
   'warren g magnuson park', 'washington park arboretum', 'yesler swamp',
-  'craft island'
+  'craft island', 'edmonds marsh', 'edmonds marina', 'brackets landing'
 )
 
 if (-not (Test-Path -Path $photoDirectory -PathType Container)) {
