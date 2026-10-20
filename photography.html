@@ -34,12 +34,10 @@
       .photo-gallery a:hover img { transform: scale(1.025); }
       .lightbox { align-items: center; background: rgba(0, 0, 0, 0.9); display: none; inset: 0; justify-content: center; overflow: auto; position: fixed; z-index: 2; }
       .lightbox.is-open { display: flex; }
-      .lightbox-figure { margin: 0; text-align: center; }
-      .lightbox img { cursor: zoom-in; max-height: 82vh; max-width: 88vw; object-fit: contain; }
+      .lightbox-figure { display: flex; flex-direction: column; height: 100vh; margin: 0; text-align: center; width: 100vw; }
+      .lightbox img { display: block; flex: 1 1 auto; height: 0; min-height: 0; object-fit: contain; width: 100%; }
       .lightbox figcaption { color: white; font: 18px/1.4 'Titillium Web', sans-serif; margin-top: 10px; }
       .lightbox-count { color: #999; display: block; font-size: 13px; margin-top: 2px; }
-      .lightbox.is-zoomed { align-items: flex-start; justify-content: flex-start; padding: 24px; }
-      .lightbox.is-zoomed img { cursor: zoom-out; max-height: none; max-width: none; }
       .lightbox button { background: transparent; border: 0; color: white; cursor: pointer; font-size: 42px; line-height: 1; padding: 16px; position: fixed; }
       .lightbox-close { right: 16px; top: 16px; }
       .lightbox-previous { left: 16px; top: 50%; transform: translateY(-50%); }
@@ -452,7 +450,7 @@
       <button aria-label="Close photo" class="lightbox-close" type="button">&times;</button>
       <button aria-label="Previous photo" class="lightbox-previous" type="button">&larr;</button>
       <figure class="lightbox-figure">
-        <img alt="" id="lightbox-image" tabindex="0">
+        <img alt="" id="lightbox-image">
         <figcaption><span id="lightbox-label"></span><span class="lightbox-count" id="lightbox-count"></span></figcaption>
       </figure>
       <button aria-label="Next photo" class="lightbox-next" type="button">&rarr;</button>
@@ -474,7 +472,6 @@
       function showPhoto(index) {
         activePhoto = (index + visibleGalleryLinks.length) % visibleGalleryLinks.length;
         const photo = visibleGalleryLinks[activePhoto];
-        lightbox.classList.remove('is-zoomed');
         lightboxImage.src = photo.href;
         lightboxImage.alt = photo.dataset.label;
         lightboxLabel.textContent = photo.dataset.label;
@@ -538,17 +535,6 @@
       document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
       document.querySelector('.lightbox-previous').addEventListener('click', () => showPhoto(activePhoto - 1));
       document.querySelector('.lightbox-next').addEventListener('click', () => showPhoto(activePhoto + 1));
-      function toggleZoom() {
-        lightbox.classList.toggle('is-zoomed');
-      }
-
-      lightboxImage.addEventListener('click', toggleZoom);
-      lightboxImage.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          toggleZoom();
-        }
-      });
       lightbox.addEventListener('click', (event) => {
         if (event.target === lightbox) closeLightbox();
       });
