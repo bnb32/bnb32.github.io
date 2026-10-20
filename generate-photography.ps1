@@ -13,6 +13,15 @@ $placeKeywords = @(
   'craft island', 'edmonds marsh', 'edmonds marina', 'brackets landing'
 )
 
+
+$excludedKeywords = @(
+  'animal', 'bird', 'place', 'mammal', 'reptile', 'amphibian',
+  'invertebrate', 'insect', 'arachnid', 'people', 'person', 'portrait',
+  'landscape', 'cityscape', 'changed', 'cr3', 'environment', 'exported',
+  'boring background', 'male'
+)
+
+
 if (-not (Test-Path -Path $photoDirectory -PathType Container)) {
     throw "Photo directory not found: $photoDirectory"
 }
@@ -87,12 +96,6 @@ function Get-PhotoLabel {
     [System.IO.FileInfo]$Photo,
     [string[]]$Keywords,
     [string]$Category
-  )
-
-  $excludedKeywords = @(
-    'animal', 'bird', 'place', 'mammal', 'reptile', 'amphibian',
-    'invertebrate', 'insect', 'arachnid', 'people', 'person', 'portrait',
-    'landscape', 'cityscape', 'changed', 'cr3', 'environment', 'exported'
   )
 
   if ($Category -in @('Birds', 'Mammals', 'Reptiles & Amphibians', 'Invertebrates')) {
