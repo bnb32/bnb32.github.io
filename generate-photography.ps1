@@ -98,12 +98,13 @@ function Get-PhotoLabel {
     [string]$Category
   )
 
+  $labelExcludedKeywords = $excludedKeywords
   if ($Category -in @('Birds', 'Mammals', 'Reptiles & Amphibians', 'Invertebrates')) {
-    $excludedKeywords += $placeKeywords
+    $labelExcludedKeywords += $placeKeywords
   }
 
   $label = $Keywords |
-    Where-Object { $_ -and $_.ToLowerInvariant() -notin $excludedKeywords } |
+    Where-Object { $_ -and $_.ToLowerInvariant() -notin $labelExcludedKeywords } |
     Select-Object -First 1
 
   if ($label) {
