@@ -18,7 +18,7 @@ $excludedKeywords = @(
   'animal', 'bird', 'place', 'mammal', 'reptile', 'amphibian',
   'invertebrate', 'insect', 'arachnid', 'people', 'person', 'portrait',
   'landscape', 'cityscape', 'changed', 'cr3', 'environment', 'exported',
-  'boring background', 'male'
+  'boring background', 'male', 'golden hour'
 )
 
 
