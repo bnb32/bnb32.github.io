@@ -10,7 +10,8 @@ $placeKeywords = @(
   'skagit wildlife area (wiley slough farm unit)',
   'smith island habitat & wildlife viewing area', 'union bay natural area',
   'warren g magnuson park', 'washington park arboretum', 'yesler swamp',
-  'craft island', 'edmonds marsh', 'edmonds marina', 'brackets landing'
+  'craft island', 'edmonds marsh', 'edmonds marina', 'brackets landing',
+  'ravenna park'
 )
 
 
