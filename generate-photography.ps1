@@ -11,7 +11,7 @@ $placeKeywords = @(
   'smith island habitat & wildlife viewing area', 'union bay natural area',
   'warren g magnuson park', 'washington park arboretum', 'yesler swamp',
   'craft island', 'edmonds marsh', 'edmonds marina', 'brackets landing',
-  'ravenna park'
+  'ravenna park', 'twin ponds park'
 )
 
 
